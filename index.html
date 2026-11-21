@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Excel para Recrutamento</title>
+<meta name="description" content="Tutorial completo de Excel para recrutadores: base de candidatos, validação, limpeza de dados, fórmulas, PROCX, tabelas dinâmicas, indicadores (time to hire, funil, fontes), painel, LGPD e uso no celular.">
+<meta name="theme-color" content="#1e3a8a">
+<meta property="og:title" content="Excel para Recrutamento: tutorial completo">
+<meta property="og:description" content="Do zero ao painel de indicadores, com exemplos do dia a dia de quem recruta. Funciona no computador e no celular.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Cpath d='M9 9l6 7-6 7M17 23h7' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <button id="botao-menu" class="botao-icone so-celular" aria-label="Abrir menu de módulos" aria-expanded="false" aria-controls="menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <a class="marca" href="#inicio">
+    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#3b82f6"/><path d="M9 9l6 7-6 7M17 23h7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Excel <span class="texto-longo">para Recrutamento</span></span>
+  </a>
+  <span class="espaco"></span>
+  <div class="progresso-topo" role="status" aria-label="Progresso">
+    <span class="rotulo">Progresso</span>
+    <span class="barra" aria-hidden="true"><span></span></span>
+    <span class="valor">0%</span>
+  </div>
+  <button id="botao-tema" class="botao-icone" aria-label="Alternar tema claro ou escuro">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <nav id="menu" class="menu" aria-label="Módulos do tutorial">
+    <div class="busca">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="busca" type="search" placeholder="Buscar: PROCX, funil, LGPD..." aria-label="Buscar no tutorial" autocomplete="off">
+    </div>
+    <p class="sem-resultado" hidden>Nada encontrado. Tente outra palavra.</p>
+
+    <p class="grupo">Começo</p>
+    <ol>
+      <li><a href="#como-usar"><span class="num"><span>0</span></span>Como usar este tutorial</a></li>
+      <li><a href="#primeiros-passos"><span class="num"><span>1</span></span>Primeiros passos no Excel</a></li>
+    </ol>
+    <p class="grupo">Base de candidatos</p>
+    <ol>
+      <li><a href="#estrutura"><span class="num"><span>2</span></span>Como montar a base</a></li>
+      <li><a href="#tabelas"><span class="num"><span>3</span></span>Formatar como Tabela</a></li>
+      <li><a href="#validacao"><span class="num"><span>4</span></span>Listas suspensas e validação</a></li>
+      <li><a href="#limpeza"><span class="num"><span>5</span></span>Limpeza de dados</a></li>
+    </ol>
+    <p class="grupo">Fórmulas</p>
+    <ol>
+      <li><a href="#formulas"><span class="num"><span>6</span></span>Fórmulas essenciais</a></li>
+      <li><a href="#datas"><span class="num"><span>7</span></span>Datas, prazos e SLA</a></li>
+      <li><a href="#procx"><span class="num"><span>8</span></span>PROCX: cruzar abas</a></li>
+      <li><a href="#matriz"><span class="num"><span>9</span></span>FILTRO, ÚNICO, CLASSIFICAR</a></li>
+    </ol>
+    <p class="grupo">Análise</p>
+    <ol>
+      <li><a href="#condicional"><span class="num"><span>10</span></span>Formatação condicional</a></li>
+      <li><a href="#filtros"><span class="num"><span>11</span></span>Classificar e filtrar</a></li>
+      <li><a href="#dinamica"><span class="num"><span>12</span></span>Tabela dinâmica</a></li>
+      <li><a href="#graficos"><span class="num"><span>13</span></span>Gráficos</a></li>
+    </ol>
+    <p class="grupo">Recrutamento na prática</p>
+    <ol>
+      <li><a href="#indicadores"><span class="num"><span>14</span></span>Indicadores (KPIs)</a></li>
+      <li><a href="#painel"><span class="num"><span>15</span></span>Montando o painel</a></li>
+      <li><a href="#scorecard"><span class="num"><span>16</span></span>Scorecard de entrevista</a></li>
+    </ol>
+    <p class="grupo">Rotina e segurança</p>
+    <ol>
+      <li><a href="#colaboracao"><span class="num"><span>17</span></span>Trabalho em equipe</a></li>
+      <li><a href="#lgpd"><span class="num"><span>18</span></span>LGPD e segurança</a></li>
+      <li><a href="#celular"><span class="num"><span>19</span></span>Excel no celular</a></li>
+    </ol>
+    <p class="grupo">Consulta rápida</p>
+    <ol>
+      <li><a href="#atalhos"><span class="num"><span>20</span></span>Atalhos de teclado</a></li>
+      <li><a href="#erros"><span class="num"><span>21</span></span>Erros e como resolver</a></li>
+      <li><a href="#exercicios"><span class="num"><span>22</span></span>Exercícios com gabarito</a></li>
+      <li><a href="#checklist"><span class="num"><span>23</span></span>Checklist e glossário</a></li>
+    </ol>
+  </nav>
+  <div class="fundo-menu" aria-hidden="true"></div>
+
+  <main id="conteudo" class="conteudo">
+
+<!-- =============================== 0 =============================== -->
+<section id="inicio" class="capa" aria-labelledby="t-inicio">
+  <div class="selos">
+    <span class="selo">24 módulos</span>
+    <span class="selo">Do básico ao painel</span>
+    <span class="selo">Computador e celular</span>
+    <span class="selo">Excel em português</span>
+  </div>
+  <h1 id="t-inicio">Excel para Recrutamento</h1>
+  <p>Um guia passo a passo para quem recruta: organizar candidatos e vagas, acabar com retrabalho, acompanhar prazos, medir o funil e mostrar resultados para gestores. Todos os exemplos usam situações reais da rotina de Recrutamento e Seleção.</p>
+  <div class="botoes">
+    <a class="botao claro" href="arquivos/planilha-pratica-recrutamento.xlsx" download>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16"/></svg>
+      Baixar planilha de prática
+    </a>
+    <a class="botao contorno" href="#primeiros-passos">Começar pelo módulo 1</a>
+  </div>
+</section>
+
+<section class="modulo" id="como-usar" aria-labelledby="t-como-usar">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 0</span>
+      <h2 id="t-como-usar">Como usar este tutorial</h2>
+    </div>
+  </header>
+  <p>O tutorial foi pensado para ser lido e praticado ao mesmo tempo. Cada módulo tem um objetivo, o passo a passo no Excel, a fórmula pronta para copiar e um exemplo com dados de candidatos.</p>
+
+  <div class="grade">
+    <div class="cartao"><h4>1. Baixe a planilha</h4><p>O botão acima baixa a <strong>planilha de prática</strong> com 60 candidatos e 7 vagas fictícios, painel, scorecard e exercícios.</p></div>
+    <div class="cartao"><h4>2. Siga na ordem</h4><p>Os módulos 1 a 5 montam a base. Do 6 ao 13 você analisa. Do 14 ao 16 vira indicador para o gestor.</p></div>
+    <div class="cartao"><h4>3. Marque o que concluiu</h4><p>No fim de cada módulo há um botão <strong>Marcar como concluído</strong>. O progresso fica salvo neste navegador.</p></div>
+    <div class="cartao"><h4>4. Use como consulta</h4><p>A busca no menu acha qualquer fórmula ou tema. Os módulos 20 a 23 são de consulta rápida.</p></div>
+  </div>
+
+  <h3>Convenções usadas</h3>
+  <ul>
+    <li><span class="caminho">Dados › Validação de Dados</span> é o caminho no menu (guia <em>Dados</em>, botão <em>Validação de Dados</em>).</li>
+    <li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> é um atalho de teclado: segure as teclas juntas. Os atalhos são os do Excel <strong>em português</strong>, que às vezes diferem do Excel em inglês (salvar é <kbd>Ctrl</kbd>+<kbd>B</kbd>, não <kbd>Ctrl</kbd>+<kbd>S</kbd>). No Mac, troque <kbd>Ctrl</kbd> por <kbd>⌘</kbd> na maioria dos casos (veja o módulo 20).</li>
+    <li>As fórmulas estão em <strong>português</strong>, com <strong>ponto e vírgula</strong> separando os argumentos, que é o padrão do Excel instalado em português do Brasil.</li>
+  </ul>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">Seu Excel está em inglês?</span>
+    <p>Os nomes mudam (<code>PROCX</code> vira <code>XLOOKUP</code>, <code>SE</code> vira <code>IF</code>) e, conforme a configuração regional, o separador vira vírgula. A tabela de equivalências está no módulo 6. A planilha de prática funciona nos dois idiomas: o Excel traduz as fórmulas sozinho ao abrir.</p>
+  </div>
+
+  <h3>Qual versão do Excel eu preciso?</h3>
+  <div class="tabela-rolagem">
+    <table>
+      <thead><tr><th>Versão</th><th>O que funciona</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Microsoft 365</strong> (assinatura, computador)</td><td>Tudo deste tutorial, inclusive PROCX, FILTRO, ÚNICO, TEXTOANTES e gráfico de funil.</td></tr>
+        <tr><td><strong>Excel 2021 / 2024</strong></td><td>Quase tudo. PROCX, FILTRO e ÚNICO funcionam. TEXTOANTES/TEXTODEPOIS exigem 2024 ou 365.</td></tr>
+        <tr><td><strong>Excel 2016 / 2019</strong></td><td>Base, tabelas, validação, tabela dinâmica, CONT.SES, PROCV/ÍNDICE+CORRESP. Sem PROCX e sem funções de matriz dinâmica. Funil a partir do 2019.</td></tr>
+        <tr><td><strong>Excel na Web</strong> (navegador, grátis com conta Microsoft)</td><td>Fórmulas modernas, tabelas, filtros, tabela dinâmica e coautoria. Alguns recursos avançados de gráfico e proteção são limitados.</td></tr>
+        <tr><td><strong>Excel no celular</strong> (Android / iPhone)</td><td>Ver, filtrar, editar, inserir fórmulas, comentar. Ótimo para consulta e atualização rápida (módulo 19).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Para saber a sua versão: <span class="caminho">Arquivo › Conta › Sobre o Excel</span>.</p>
+  <button class="concluir" data-modulo="como-usar" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 1 =============================== -->
+<section class="modulo" id="primeiros-passos" aria-labelledby="t-pp">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 1</span>
+      <h2 id="t-pp">Primeiros passos no Excel</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">15 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Reconhecer as partes da tela e o vocabulário básico.</li><li>Navegar rápido por planilhas com milhares de candidatos.</li><li>Salvar de forma segura na nuvem (OneDrive/SharePoint).</li></ul>
+  </div>
+
+  <h3>Vocabulário em 1 minuto</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Termo</th><th>O que é</th><th>No recrutamento</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pasta de trabalho</strong></td><td>O arquivo .xlsx inteiro.</td><td>“Controle de Vagas 2026.xlsx”</td></tr>
+      <tr><td><strong>Planilha / aba</strong></td><td>Cada folha dentro do arquivo (abas embaixo).</td><td>Abas Candidatos, Vagas, Painel.</td></tr>
+      <tr><td><strong>Célula</strong></td><td>Encontro de uma coluna com uma linha. Ex.: <code>B5</code>.</td><td>O nome de um candidato.</td></tr>
+      <tr><td><strong>Intervalo</strong></td><td>Um bloco de células. Ex.: <code>A2:A61</code>.</td><td>Todos os e-mails.</td></tr>
+      <tr><td><strong>Linha</strong></td><td>Horizontal, numerada (1, 2, 3...).</td><td>Um candidato = uma linha.</td></tr>
+      <tr><td><strong>Coluna</strong></td><td>Vertical, com letras (A, B, C...).</td><td>Um tipo de informação (Etapa, Fonte...).</td></tr>
+      <tr><td><strong>Barra de fórmulas</strong></td><td>Campo acima das colunas que mostra o conteúdo real da célula.</td><td>Ver a fórmula por trás de um número.</td></tr>
+      <tr><td><strong>Faixa de opções</strong></td><td>Guias no topo: Página Inicial, Inserir, Dados, Revisão, Exibir.</td><td>Onde ficam todos os comandos.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Digitando e editando</h3>
+  <ul>
+    <li>Clique na célula e digite. <kbd>Enter</kbd> confirma e desce; <kbd>Tab</kbd> confirma e vai para a direita (ótimo para cadastrar um candidato inteiro na mesma linha).</li>
+    <li><kbd>F2</kbd> edita a célula sem apagar o que já está nela.</li>
+    <li><kbd>Alt</kbd> + <kbd>Enter</kbd> quebra a linha dentro da célula (útil em “Observações”).</li>
+    <li><kbd>Esc</kbd> cancela a edição. <kbd>Ctrl</kbd> + <kbd>Z</kbd> desfaz.</li>
+    <li>Toda fórmula começa com <code>=</code>. Ex.: <code>=2+2</code>.</li>
+  </ul>
+
+  <h3>Navegando em listas grandes</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Quero...</th><th>Atalho</th></tr></thead>
+    <tbody>
+      <tr><td>Ir até o último candidato da coluna</td><td><kbd>Ctrl</kbd> + <kbd>↓</kbd></td></tr>
+      <tr><td>Selecionar a coluna até o fim dos dados</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>↓</kbd></td></tr>
+      <tr><td>Voltar para a célula A1</td><td><kbd>Ctrl</kbd> + <kbd>Home</kbd></td></tr>
+      <tr><td>Trocar de aba</td><td><kbd>Ctrl</kbd> + <kbd>Page Down</kbd> / <kbd>Page Up</kbd></td></tr>
+      <tr><td>Procurar um nome</td><td><kbd>Ctrl</kbd> + <kbd>L</kbd> (Localizar)</td></tr>
+      <tr><td>Ir para uma célula específica</td><td><kbd>F5</kbd> ou <kbd>Ctrl</kbd> + <kbd>G</kbd>, digite <code>F120</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Congelar o cabeçalho</h3>
+  <p>Com 300 candidatos, você rola a tela e perde o nome das colunas. Para manter o cabeçalho visível:</p>
+  <ol class="passos">
+    <li>Clique na célula logo abaixo do cabeçalho e à direita da coluna que quer fixar. Para fixar a linha 1 e as colunas ID e Nome, clique em <code>C2</code>.</li>
+    <li>Vá em <span class="caminho">Exibir › Congelar Painéis › Congelar Painéis</span>.</li>
+    <li>Para desfazer: <span class="caminho">Exibir › Congelar Painéis › Descongelar Painéis</span>.</li>
+  </ol>
+
+  <h3>Salvar do jeito certo</h3>
+  <div class="compara">
+    <div class="nao"><h4>Evite</h4><ul>
+      <li>“Candidatos_final_v3_AGORA_VAI.xlsx” na área de trabalho.</li>
+      <li>Mandar a planilha por e-mail ou WhatsApp a cada atualização.</li>
+      <li>Cada recrutador com sua cópia.</li>
+    </ul></div>
+    <div class="sim"><h4>Prefira</h4><ul>
+      <li>Um arquivo único no <strong>OneDrive</strong> ou <strong>SharePoint/Teams</strong> da empresa.</li>
+      <li><strong>Salvamento Automático</strong> ligado (botão no canto superior esquerdo).</li>
+      <li>Compartilhar um link com permissão (módulo 17) e usar o Histórico de Versões.</li>
+    </ul></div>
+  </div>
+  <div class="caixa-info dica">
+    <span class="rotulo">Padrão de nome de arquivo</span>
+    <p><code>RS_ControleVagas_2026.xlsx</code> ou <code>RS_VG-003_DevBackend_Candidatos.xlsx</code>. Sem espaços, sem acentos, sem “final”. A data e a versão quem guarda é o histórico do OneDrive.</p>
+  </div>
+
+  <div class="quiz" data-correta="1" data-explica="Ctrl + Shift + ↓ seleciona da célula atual até a última preenchida da coluna.">
+    <p class="pergunta">Você quer selecionar todos os e-mails da coluna C, do C2 até o último candidato. Qual o jeito mais rápido?</p>
+    <div class="opcoes">
+      <button class="opcao" type="button">Arrastar o mouse até o fim da lista</button>
+      <button class="opcao" type="button">Clicar em C2 e apertar Ctrl + Shift + ↓</button>
+      <button class="opcao" type="button">Apertar Ctrl + Home</button>
+    </div>
+    <p class="retorno" aria-live="polite"></p>
+  </div>
+  <button class="concluir" data-modulo="primeiros-passos" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 2 =============================== -->
+<section class="modulo" id="estrutura" aria-labelledby="t-estrutura">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 2</span>
+      <h2 id="t-estrutura">Como montar a base de candidatos</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">20 min</span><span class="chip">O módulo mais importante</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Aplicar as regras de “dados tabulares” que fazem fórmulas, filtros e tabelas dinâmicas funcionarem.</li><li>Definir as colunas certas para candidatos e vagas.</li></ul>
+  </div>
+  <p>Quase todo problema de planilha de recrutamento vem da estrutura, não das fórmulas. Uma base bem montada responde sozinha a perguntas como “quantos candidatos do LinkedIn chegaram na entrevista com o gestor?”. Uma base mal montada exige contar na mão.</p>
+
+  <h3>As 8 regras de ouro</h3>
+  <ol class="passos">
+    <li><strong>Uma linha = um candidato em um processo.</strong> Se a mesma pessoa concorre a duas vagas, são duas linhas (com o mesmo e-mail).</li>
+    <li><strong>Uma coluna = um tipo de informação.</strong> Nunca “Status e data” na mesma célula. Crie <em>Status</em> e <em>Data da última movimentação</em>.</li>
+    <li><strong>Cabeçalho em uma única linha</strong>, na linha 1, com nomes curtos e únicos. Nada de título enfeitado acima da tabela.</li>
+    <li><strong>Sem células mescladas</strong>. Elas quebram filtro, classificação e cópia. Para centralizar, use <span class="caminho">Ctrl+1 › Alinhamento › Centralizar seleção</span>.</li>
+    <li><strong>Sem linhas ou colunas vazias</strong> no meio dos dados, e sem subtotais no meio da lista.</li>
+    <li><strong>Datas como data</strong> (<code>15/09/2026</code>), nunca como texto (“15 de set”). Só assim dá para calcular prazos.</li>
+    <li><strong>Valores padronizados</strong>: “LinkedIn” sempre escrito igual. Use listas suspensas (módulo 4).</li>
+    <li><strong>Um identificador único</strong> por linha (<code>CAND-001</code>) e por vaga (<code>VG-003</code>). É o que liga uma aba à outra.</li>
+  </ol>
+
+  <div class="compara">
+    <div class="nao"><h4>Assim não</h4>
+      <div class="tabela-rolagem"><table class="planilha"><thead><tr><th></th><th>A</th><th>B</th></tr></thead><tbody>
+        <tr><td>1</td><td colspan="2"><strong>VAGA DEV — SETEMBRO</strong> (mesclado)</td></tr>
+        <tr><td>2</td><td>Mariana S.</td><td>entrevista dia 12 ok</td></tr>
+        <tr><td>3</td><td></td><td></td></tr>
+        <tr><td>4</td><td>JOAO</td><td>reprovado no teste</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="sim"><h4>Assim sim</h4>
+      <div class="tabela-rolagem"><table class="planilha"><thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody>
+        <tr><td>1</td><td><strong>ID</strong></td><td><strong>Nome</strong></td><td><strong>Etapa</strong></td><td><strong>Status</strong></td></tr>
+        <tr><td>2</td><td>CAND-001</td><td>Mariana Silva</td><td>Entrevista RH</td><td>Em andamento</td></tr>
+        <tr><td>3</td><td>CAND-002</td><td>João Souza</td><td>Teste técnico</td><td>Reprovado</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <h3>Colunas recomendadas: aba Candidatos</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Coluna</th><th>Tipo</th><th>Exemplo</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>ID</td><td>Texto</td><td>CAND-001</td><td>Chave única. Nunca reutilize.</td></tr>
+      <tr><td>Nome</td><td>Texto</td><td>Mariana Silva</td><td>Nome completo, com maiúsculas corretas.</td></tr>
+      <tr><td>E-mail</td><td>Texto</td><td>mariana.silva@email.com</td><td>Melhor chave para achar duplicados.</td></tr>
+      <tr><td>Telefone</td><td>Texto</td><td>(11) 98765-4321</td><td>Como texto, para não perder o zero e não virar número científico.</td></tr>
+      <tr><td>Cidade</td><td>Lista</td><td>Campinas / Remoto</td><td>Filtrar por localidade e modelo de trabalho.</td></tr>
+      <tr><td>Cód. Vaga</td><td>Lista</td><td>VG-003</td><td>Liga o candidato à aba Vagas.</td></tr>
+      <tr><td>Cargo</td><td>Fórmula</td><td>=PROCX(...)</td><td>Vem da aba Vagas automaticamente (módulo 8).</td></tr>
+      <tr><td>Fonte</td><td>Lista</td><td>LinkedIn</td><td>Medir qual canal traz gente boa.</td></tr>
+      <tr><td>Recrutador</td><td>Lista</td><td>Ana Lima</td><td>Carteira de cada pessoa.</td></tr>
+      <tr><td>Etapa</td><td>Lista</td><td>Entrevista gestor</td><td>Última etapa que a pessoa <strong>alcançou</strong>.</td></tr>
+      <tr><td>Nº Etapa</td><td>Fórmula</td><td>5</td><td>Ordem da etapa, para montar o funil.</td></tr>
+      <tr><td>Status</td><td>Lista</td><td>Em andamento</td><td>Situação atual: Em andamento, Reprovado, Desistiu, Contratado, Banco de talentos.</td></tr>
+      <tr><td>Data Inscrição</td><td>Data</td><td>15/09/2026</td><td>Início da contagem de prazos.</td></tr>
+      <tr><td>Última Movimentação</td><td>Data</td><td>02/10/2026</td><td>Detecta candidato esquecido sem retorno.</td></tr>
+      <tr><td>Data Contratação</td><td>Data</td><td>18/10/2026</td><td>Calcula o time to hire.</td></tr>
+      <tr><td>Pretensão Salarial</td><td>Moeda</td><td>R$ 8.500,00</td><td>Comparar com a faixa da vaga.</td></tr>
+      <tr><td>Nota Entrevista</td><td>Número 0–5</td><td>4,3</td><td>Vem do scorecard (módulo 16).</td></tr>
+      <tr><td>Motivo da reprovação/desistência</td><td>Lista</td><td>Pretensão acima da faixa</td><td>Mostra onde o funil vaza.</td></tr>
+      <tr><td>Consentimento banco de talentos</td><td>Sim/Não + data</td><td>Sim — 15/09/2026</td><td>Exigência de LGPD (módulo 18).</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Etapa x Status: separe sempre</span>
+    <p><strong>Etapa</strong> responde “até onde a pessoa chegou?” e <strong>Status</strong> responde “como ela está agora?”. Um candidato reprovado no teste técnico fica com Etapa = <em>Teste técnico</em> e Status = <em>Reprovado</em>. Com essa separação você monta o funil, mede onde as pessoas saem e ainda filtra quem está ativo.</p>
+  </div>
+
+  <h3>Colunas recomendadas: aba Vagas</h3>
+  <p>Código, Cargo, Área, Gestor, Recrutador responsável, Data de abertura, SLA (dias úteis), Faixa salarial mín./máx., Modelo (presencial/híbrido/remoto), Status da vaga (Aberta, Fechada, Congelada, Cancelada), Data de fechamento, Motivo (aumento de quadro/substituição).</p>
+
+  <h3>Organização das abas</h3>
+  <div class="grade">
+    <div class="cartao"><h4>Painel</h4><p>Indicadores e gráficos. Só leitura, protegido.</p></div>
+    <div class="cartao"><h4>Candidatos</h4><p>A base. Uma linha por candidato por processo.</p></div>
+    <div class="cartao"><h4>Vagas</h4><p>Uma linha por vaga. Prazos e SLA.</p></div>
+    <div class="cartao"><h4>Listas</h4><p>Opções das listas suspensas e feriados. Pode ficar oculta.</p></div>
+  </div>
+  <div class="quiz" data-correta="2" data-explica="Uma linha por candidato por processo mantém o histórico de cada vaga separado, e o e-mail repetido mostra que é a mesma pessoa.">
+    <p class="pergunta">A mesma candidata participa da vaga VG-003 e depois da VG-005. Como registrar?</p>
+    <div class="opcoes">
+      <button class="opcao" type="button">Uma linha só, com “VG-003 e VG-005” na coluna Cód. Vaga</button>
+      <button class="opcao" type="button">Em uma aba separada só para ela</button>
+      <button class="opcao" type="button">Duas linhas, cada uma com seu código de vaga, etapa e status</button>
+    </div>
+    <p class="retorno" aria-live="polite"></p>
+  </div>
+  <button class="concluir" data-modulo="estrutura" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 3 =============================== -->
+<section class="modulo" id="tabelas" aria-labelledby="t-tabelas">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 3</span>
+      <h2 id="t-tabelas">Formatar como Tabela (o recurso que muda tudo)</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">15 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Transformar o intervalo em uma Tabela do Excel com nome.</li><li>Escrever fórmulas com referências estruturadas, que não quebram quando a lista cresce.</li></ul>
+  </div>
+  <p>Uma <strong>Tabela</strong> do Excel não é só “pintar de azul”. Ela faz a lista crescer sozinha: quando você cadastra um novo candidato na linha de baixo, a formatação, as fórmulas, as listas suspensas, os filtros e os gráficos já incluem a nova linha.</p>
+
+  <h3>Passo a passo</h3>
+  <ol class="passos">
+    <li>Clique em qualquer célula da sua lista.</li>
+    <li>Vá em <span class="caminho">Página Inicial › Formatar como Tabela</span> e escolha um estilo azul, ou use <span class="caminho">Inserir › Tabela</span>. Atalho: <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> no Excel em português (<kbd>Ctrl</kbd> + <kbd>T</kbd> no Excel em inglês).</li>
+    <li>Confira o intervalo e deixe marcado <strong>Minha tabela tem cabeçalhos</strong>. Clique OK.</li>
+    <li>Na guia <span class="caminho">Design da Tabela</span> (ou <em>Tabela</em>), no campo <strong>Nome da Tabela</strong> à esquerda, troque “Tabela1” por <code>tbl_Candidatos</code>. Sem espaços.</li>
+    <li>Repita na aba Vagas com o nome <code>tbl_Vagas</code>.</li>
+  </ol>
+
+  <h3>O que você ganha</h3>
+  <div class="grade">
+    <div class="cartao"><h4>Expansão automática</h4><p>Digitou na linha logo abaixo? Entra na tabela.</p></div>
+    <div class="cartao"><h4>Fórmula que se replica</h4><p>Escreveu uma fórmula na primeira linha de uma coluna? Ela desce sozinha (coluna calculada).</p></div>
+    <div class="cartao"><h4>Filtro pronto</h4><p>Setas de filtro em cada cabeçalho e cabeçalho fixo ao rolar.</p></div>
+    <div class="cartao"><h4>Segmentação</h4><p>Botões de filtro visuais (módulo 11).</p></div>
+    <div class="cartao"><h4>Linha de totais</h4><p><span class="caminho">Design da Tabela › Linha de Totais</span> mostra contagem, média etc. e respeita o filtro.</p></div>
+    <div class="cartao"><h4>Fórmulas legíveis</h4><p><code>tbl_Candidatos[Fonte]</code> em vez de <code>$H$2:$H$61</code>.</p></div>
+  </div>
+
+  <h3>Referências estruturadas</h3>
+  <p>Dentro e fora da tabela, você pode chamar colunas pelo nome:</p>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Escrita</th><th>Significa</th></tr></thead>
+    <tbody>
+      <tr><td><code>tbl_Candidatos[Status]</code></td><td>A coluna Status inteira (só dados, sem cabeçalho).</td></tr>
+      <tr><td><code>[@Status]</code></td><td>O Status <strong>desta linha</strong> (usado dentro da tabela).</td></tr>
+      <tr><td><code>[@[Data Inscrição]]</code></td><td>Mesma coisa, com colchetes extras porque o nome tem espaço.</td></tr>
+      <tr><td><code>tbl_Candidatos[#Tudo]</code></td><td>A tabela inteira, com cabeçalho.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="formula">
+    <div class="cab"><span>Contar candidatos ativos</span></div>
+    <pre><code>=CONT.SES(tbl_Candidatos[Status];"Em andamento")</code></pre>
+    <p class="explica">Funciona com 60 ou com 6.000 linhas, sem ajustar intervalo.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Coluna calculada dentro da tabela</span></div>
+    <pre><code>=SE([@Status]="Contratado";"✔";"")</code></pre>
+    <p class="explica">Escreva na primeira linha de uma coluna nova; o Excel preenche o resto.</p>
+  </div>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Dica</span>
+    <p>Ao escrever a fórmula, em vez de digitar o nome da coluna, <strong>clique</strong> na célula da mesma linha: o Excel escreve <code>[@Coluna]</code> para você.</p>
+  </div>
+  <div class="caixa-info atencao">
+    <span class="rotulo">Atenção</span>
+    <p>Não deixe uma linha vazia entre a tabela e o novo candidato: digite logo na primeira linha abaixo. E não crie duas tabelas com o mesmo nome em abas diferentes.</p>
+  </div>
+  <button class="concluir" data-modulo="tabelas" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 4 =============================== -->
+<section class="modulo" id="validacao" aria-labelledby="t-validacao">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 4</span>
+      <h2 id="t-validacao">Listas suspensas e validação de dados</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">20 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Criar listas suspensas para Etapa, Status, Fonte e Recrutador.</li><li>Bloquear datas e notas inválidas e evitar IDs duplicados.</li></ul>
+  </div>
+  <p>Se uma pessoa escreve “Linkedin”, outra “LinkedIn ” (com espaço) e outra “Linked in”, o Excel conta três fontes diferentes. Lista suspensa resolve isso na origem.</p>
+
+  <h3>1. Crie a aba Listas</h3>
+  <p>Numa aba chamada <strong>Listas</strong>, coloque cada lista em uma coluna, com cabeçalho. Transforme cada uma em Tabela (<span class="caminho">Inserir › Tabela</span>) com nomes como <code>lst_Etapas</code>, <code>lst_Status</code>, <code>lst_Fontes</code>. Assim, quando surgir uma fonte nova, basta digitar embaixo e a lista suspensa cresce.</p>
+  <div class="tabela-rolagem"><table class="planilha"><thead><tr><th></th><th>A — Etapas</th><th>C — Status</th><th>E — Fontes</th></tr></thead><tbody>
+    <tr><td>1</td><td>Inscrito</td><td>Em andamento</td><td>LinkedIn</td></tr>
+    <tr><td>2</td><td>Triagem</td><td>Reprovado</td><td>Indicação</td></tr>
+    <tr><td>3</td><td>Entrevista RH</td><td>Desistiu</td><td>Site de carreiras</td></tr>
+    <tr><td>4</td><td>Teste técnico</td><td>Contratado</td><td>Indeed</td></tr>
+    <tr><td>5</td><td>Entrevista gestor</td><td>Banco de talentos</td><td>Hunting</td></tr>
+    <tr><td>6</td><td>Proposta</td><td></td><td>Banco de talentos</td></tr>
+    <tr><td>7</td><td>Contratado</td><td></td><td>Universidades</td></tr>
+  </tbody></table></div>
+
+  <h3>2. Aplique a lista suspensa</h3>
+  <ol class="passos">
+    <li>Na aba Candidatos, selecione a coluna <strong>Etapa</strong> (só os dados, ou clique no topo da coluna dentro da tabela).</li>
+    <li>Vá em <span class="caminho">Dados › Validação de Dados</span>.</li>
+    <li>Em <strong>Permitir</strong>, escolha <strong>Lista</strong>.</li>
+    <li>Em <strong>Fonte</strong>, escreva a fórmula abaixo (ou selecione o intervalo na aba Listas).</li>
+    <li>Na guia <strong>Alerta de erro</strong>, estilo <strong>Parar</strong>, título “Etapa inválida” e mensagem “Escolha uma etapa da lista”.</li>
+  </ol>
+  <div class="formula">
+    <div class="cab"><span>Fonte da lista (cresce sozinha)</span></div>
+    <pre><code>=INDIRETO("lst_Etapas[Etapas]")</code></pre>
+    <p class="explica">A caixa de validação não aceita referência estruturada direta; o <b>INDIRETO</b> resolve. Alternativa simples: <b>=Listas!$A$2:$A$20</b>.</p>
+  </div>
+
+  <h3>3. Outras validações úteis</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Coluna</th><th>Permitir</th><th>Regra</th></tr></thead>
+    <tbody>
+      <tr><td>Datas</td><td>Data</td><td>Maior que 01/01/2020 (evita 1900 por engano).</td></tr>
+      <tr><td>Data de contratação</td><td>Personalizado</td><td><code>=OU(N2="";N2&gt;=M2)</code> — não pode ser antes da inscrição.</td></tr>
+      <tr><td>Nota entrevista</td><td>Decimal</td><td>Entre 0 e 5.</td></tr>
+      <tr><td>Pretensão salarial</td><td>Decimal</td><td>Maior que 0.</td></tr>
+      <tr><td>ID sem duplicar</td><td>Personalizado</td><td><code>=CONT.SE($A:$A;A2)=1</code></td></tr>
+      <tr><td>E-mail com @</td><td>Personalizado</td><td><code>=ÉNÚM(LOCALIZAR("@";C2))</code></td></tr>
+      <tr><td>Telefone</td><td>Comprimento do texto</td><td>Entre 10 e 16 caracteres.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Na guia <strong>Mensagem de entrada</strong> você pode deixar uma instrução que aparece ao clicar na célula, como “Data no formato dd/mm/aaaa”.</p>
+
+  <h3>4. Lista dependente (vaga → cargo, área → vagas)</h3>
+  <p>No Excel 365 dá para fazer uma lista de vagas que só mostra as <strong>abertas</strong>. Numa célula da aba Listas (ex.: <code>G2</code>), escreva:</p>
+  <div class="formula">
+    <div class="cab"><span>Vagas abertas (Excel 365)</span></div>
+    <pre><code>=FILTRO(tbl_Vagas[Código];tbl_Vagas[Status Vaga]="Aberta";"Nenhuma")</code></pre>
+    <p class="explica">Depois, na validação da coluna Cód. Vaga, use a Fonte <b>=Listas!$G$2#</b>. O <b>#</b> pega o resultado inteiro, de qualquer tamanho.</p>
+  </div>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">Colar fura a validação</span>
+    <p>Se alguém <strong>colar</strong> dados de outro lugar, a validação não bloqueia. Para achar o que ficou errado: <span class="caminho">Dados › Validação de Dados › Circular Dados Inválidos</span>.</p>
+  </div>
+  <div class="caixa-info celular-dica">
+    <span class="rotulo">No celular</span>
+    <p>Listas suspensas criadas no computador funcionam no app: toque na célula e na setinha que aparece. É o jeito mais rápido de atualizar a etapa de um candidato entre uma entrevista e outra.</p>
+  </div>
+  <button class="concluir" data-modulo="validacao" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 5 =============================== -->
+<section class="modulo" id="limpeza" aria-labelledby="t-limpeza">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 5</span>
+      <h2 id="t-limpeza">Limpeza de dados de formulários e plataformas</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">30 min</span><span class="chip">Pratique na aba Dados_Brutos</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Padronizar nomes, e-mails e telefones exportados de ATS, formulários e LinkedIn.</li><li>Remover candidatos duplicados com segurança.</li><li>Separar e juntar textos.</li></ul>
+  </div>
+  <p>Exportações de formulário e de plataformas de vagas chegam com espaços extras, letras maiúsculas, telefones em mil formatos e a mesma pessoa inscrita duas vezes. Limpe antes de analisar.</p>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Método seguro em 4 passos</span>
+    <ol>
+      <li>Nunca limpe em cima do original: crie colunas novas ao lado (“Nome limpo”).</li>
+      <li>Escreva a fórmula na primeira linha e arraste (ou use Tabela).</li>
+      <li>Selecione as colunas limpas, <kbd>Ctrl</kbd>+<kbd>C</kbd> e <span class="caminho">Página Inicial › Colar › Colar Valores</span> (ou <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>, depois <kbd>V</kbd> e <kbd>Enter</kbd>).</li>
+      <li>Só então apague as colunas brutas.</li>
+    </ol>
+  </div>
+
+  <h3>Nomes</h3>
+  <div class="formula">
+    <div class="cab"><span>Tirar espaços extras e corrigir maiúsculas</span></div>
+    <pre><code>=PRI.MAIÚSCULA(ARRUMAR(A2))</code></pre>
+    <p class="explica"><b>ARRUMAR</b> tira espaços do início, do fim e os duplicados no meio. <b>PRI.MAIÚSCULA</b> deixa a primeira letra de cada palavra maiúscula. “&nbsp;&nbsp;maria&nbsp;&nbsp;&nbsp;eduarda SANTOS ” vira “Maria Eduarda Santos”.</p>
+  </div>
+  <p>PRI.MAIÚSCULA deixa “Da Silva” e “Dos Santos”. Para corrigir as preposições:</p>
+  <div class="formula">
+    <div class="cab"><span>Preposições em minúsculo</span></div>
+    <pre><code>=SUBSTITUIR(SUBSTITUIR(SUBSTITUIR(PRI.MAIÚSCULA(ARRUMAR(A2));" Da ";" da ");" De ";" de ");" Dos ";" dos ")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Primeiro nome (para e-mail e WhatsApp personalizados)</span></div>
+    <pre><code>=TEXTOANTES(ARRUMAR(A2);" ";;;;ARRUMAR(A2))</code></pre>
+    <p class="explica">Excel 365/2024. O último argumento devolve o nome inteiro quando não há espaço. Em versões antigas: <b>=SEERRO(ESQUERDA(A2;LOCALIZAR(" ";A2)-1);A2)</b>.</p>
+  </div>
+
+  <h3>E-mails</h3>
+  <div class="formula">
+    <div class="cab"><span>Padronizar</span></div>
+    <pre><code>=MINÚSCULA(ARRUMAR(B2))</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Conferir se parece um e-mail válido</span></div>
+    <pre><code>=E(ÉNÚM(LOCALIZAR("@";F2));ÉNÚM(LOCALIZAR(".";F2;LOCALIZAR("@";F2)));NÃO(ÉNÚM(LOCALIZAR(" ";F2))))</code></pre>
+    <p class="explica">Devolve VERDADEIRO se tem @, tem ponto depois do @ e não tem espaço. Filtre os FALSO e corrija.</p>
+  </div>
+
+  <h3>Telefones</h3>
+  <div class="formula">
+    <div class="cab"><span>Só os dígitos (Excel 365)</span></div>
+    <pre><code>=CONCAT(SEERRO(EXT.TEXTO(C2;SEQUÊNCIA(NÚM.CARACT(C2));1)*1;""))</code></pre>
+    <p class="explica">Quebra o texto em caracteres, mantém só os números e junta de novo. “+55 (21) 99876-5432” vira “5521998765432”.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Formatar celular com 11 dígitos</span></div>
+    <pre><code>=LET(d;DIREITA(G2;11);"("&amp;ESQUERDA(d;2)&amp;") "&amp;EXT.TEXTO(d;3;5)&amp;"-"&amp;DIREITA(d;4))</code></pre>
+    <p class="explica"><b>LET</b> dá um nome (d) ao resultado para não repetir. Pega os 11 últimos dígitos (descarta o 55) e monta (21) 99876-5432.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Link para abrir conversa no WhatsApp</span></div>
+    <pre><code>=HIPERLINK("https://wa.me/55"&amp;DIREITA(G2;11);"Abrir WhatsApp")</code></pre>
+    <p class="explica">No celular, tocar no link abre a conversa. Use só com candidatos que informaram o número para contato.</p>
+  </div>
+
+  <h3>Separar e juntar textos</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Situação</th><th>Fórmula</th></tr></thead>
+    <tbody>
+      <tr><td>“São Paulo - SP” → cidade</td><td><code>=ARRUMAR(TEXTOANTES(D2;"-"))</code></td></tr>
+      <tr><td>“São Paulo - SP” → UF</td><td><code>=ARRUMAR(TEXTODEPOIS(D2;"-"))</code></td></tr>
+      <tr><td>Domínio do e-mail</td><td><code>=TEXTODEPOIS(F2;"@")</code></td></tr>
+      <tr><td>Juntar nome e vaga</td><td><code>=B2&amp;" — "&amp;G2</code></td></tr>
+      <tr><td>Lista de e-mails separados por ; (para colar no Outlook)</td><td><code>=UNIRTEXTO(";";VERDADEIRO;tbl_Candidatos[E-mail])</code></td></tr>
+      <tr><td>Data como texto em mensagem</td><td><code>="Sua entrevista é dia "&amp;TEXTO(H2;"dd/mm/aaaa")</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>Sem fórmula: <span class="caminho">Dados › Texto para Colunas</span> separa por um delimitador (vírgula, hífen, ponto e vírgula).</p>
+
+  <h3>Preenchimento Relâmpago: limpeza sem fórmula</h3>
+  <ol class="passos">
+    <li>Ao lado da coluna de nomes, digite à mão o resultado que quer para a primeira linha (ex.: “Maria” a partir de “maria eduarda santos”).</li>
+    <li>Na célula de baixo, aperte <kbd>Ctrl</kbd> + <kbd>E</kbd>.</li>
+    <li>O Excel deduz o padrão e preenche a coluna. Confira algumas linhas.</li>
+  </ol>
+
+  <h3>Remover duplicados</h3>
+  <ol class="passos">
+    <li>Primeiro <strong>marque</strong> em vez de apagar. Numa coluna nova: <code>=SE(CONT.SE($F$2:F2;F2)&gt;1;"Duplicado";"")</code>. A primeira ocorrência fica em branco, as repetições aparecem como “Duplicado”.</li>
+    <li>Revise os marcados: às vezes é a mesma pessoa em vagas diferentes, e isso <strong>não</strong> é duplicado (módulo 2).</li>
+    <li>Para apagar: selecione a tabela, <span class="caminho">Dados › Remover Duplicatas</span> e marque só as colunas que definem o duplicado (ex.: <em>E-mail</em> + <em>Cód. Vaga</em>).</li>
+  </ol>
+  <div class="caixa-info atencao">
+    <span class="rotulo">Faça uma cópia antes</span>
+    <p>Remover Duplicatas apaga sem perguntar qual linha manter: fica a primeira de cima. Classifique antes por data mais recente se quiser manter o registro mais novo.</p>
+  </div>
+
+  <h3>Outros problemas comuns</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Sintoma</th><th>Causa</th><th>Solução</th></tr></thead>
+    <tbody>
+      <tr><td>Data alinhada à esquerda, não calcula</td><td>Data como texto</td><td>Selecione, <span class="caminho">Dados › Texto para Colunas › Avançar › Avançar › Data: DMA › Concluir</span>.</td></tr>
+      <tr><td>Número com triângulo verde</td><td>Número como texto</td><td>Clique no aviso › <em>Converter em Número</em>.</td></tr>
+      <tr><td>Telefone virou 1,19E+10</td><td>Telefone como número</td><td>Formate a coluna como <strong>Texto</strong> antes de colar.</td></tr>
+      <tr><td>ARRUMAR não tira um espaço</td><td>Espaço “inquebrável” vindo da web</td><td><code>=ARRUMAR(SUBSTITUIR(A2;CARACT(160);" "))</code></td></tr>
+      <tr><td>Arquivo CSV com acentos quebrados (Ã§)</td><td>Codificação</td><td><span class="caminho">Dados › Obter Dados › De Texto/CSV</span> e escolha <em>65001: Unicode (UTF-8)</em>.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Para quem importa a mesma exportação toda semana</span>
+    <p>Use o <strong>Power Query</strong> (<span class="caminho">Dados › Obter Dados</span>). Você grava os passos de limpeza uma vez (remover colunas, aparar, mudar tipo, remover duplicados) e na semana seguinte só clica em <span class="caminho">Dados › Atualizar Tudo</span>.</p>
+  </div>
+  <button class="concluir" data-modulo="limpeza" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 6 =============================== -->
+<section class="modulo" id="formulas" aria-labelledby="t-formulas">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 6</span>
+      <h2 id="t-formulas">Fórmulas essenciais para recrutadores</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">40 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Entender referências relativas e absolutas (o famoso $).</li><li>Usar SE, SES, E, OU, CONT.SES, SOMASES, MÉDIASES e SEERRO com dados de candidatos.</li></ul>
+  </div>
+
+  <h3>Anatomia de uma fórmula</h3>
+  <div class="formula">
+    <div class="cab"><span>Estrutura</span></div>
+    <pre><code>=NOME.DA.FUNÇÃO(argumento1; argumento2; [opcional])</code></pre>
+    <p class="explica">Sempre começa com <b>=</b>. Argumentos separados por <b>;</b>. Texto vai entre aspas: <b>"Contratado"</b>. Os colchetes na ajuda indicam argumento opcional.</p>
+  </div>
+  <ul>
+    <li><strong>Operadores:</strong> <code>+ - * /</code>, comparação <code>= &lt;&gt; &gt; &lt; &gt;= &lt;=</code> (<code>&lt;&gt;</code> é “diferente”) e <code>&amp;</code> para juntar textos.</li>
+    <li>Ao digitar <code>=CONT</code> o Excel lista as funções. Aperte <kbd>Tab</kbd> para aceitar a sugestão.</li>
+    <li>Com o cursor dentro da função, <kbd>Ctrl</kbd> + <kbd>A</kbd> abre o assistente com a explicação de cada argumento.</li>
+  </ul>
+
+  <h3>Referência relativa x absoluta ($)</h3>
+  <p>Quando você arrasta uma fórmula para baixo, as referências andam junto. Às vezes você quer que uma delas fique parada, como a célula com a meta de dias.</p>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Escrita</th><th>Ao arrastar</th><th>Uso típico</th></tr></thead>
+    <tbody>
+      <tr><td><code>A2</code></td><td>Linha e coluna mudam</td><td>Dado da própria linha.</td></tr>
+      <tr><td><code>$A$2</code></td><td>Fica fixa</td><td>Célula com a meta de SLA, a data de hoje, o custo.</td></tr>
+      <tr><td><code>$A2</code></td><td>Coluna fixa, linha muda</td><td>Tabelas cruzadas.</td></tr>
+      <tr><td><code>A$2</code></td><td>Linha fixa, coluna muda</td><td>Tabelas cruzadas.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Atalho: com o cursor na referência, aperte <kbd>F4</kbd> para alternar entre os quatro modos. Dentro de Tabelas, as referências estruturadas já resolvem isso.</p>
+
+  <h3>SE: decisões simples</h3>
+  <div class="formula">
+    <div class="cab"><span>Candidato aprovado na triagem pela nota</span></div>
+    <pre><code>=SE([@[Nota Entrevista]]&gt;=3,5;"Avança";"Não avança")</code></pre>
+    <p class="explica">SE(teste; valor se verdadeiro; valor se falso).</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Pretensão dentro da faixa? (E = todas as condições)</span></div>
+    <pre><code>=SE(E([@[Pretensão Salarial]]&gt;=$K$1;[@[Pretensão Salarial]]&lt;=$K$2);"Na faixa";"Fora da faixa")</code></pre>
+    <p class="explica">K1 tem o salário mínimo da faixa e K2 o máximo. O $ deixa as duas fixas.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Precisa de atenção? (OU = basta uma condição)</span></div>
+    <pre><code>=SE(OU([@[Dias parado]]&gt;=5;[@Status]="Proposta");"Atenção";"")</code></pre>
+  </div>
+
+  <h3>SES e PARÂMETRO: várias faixas sem SE dentro de SE</h3>
+  <div class="formula">
+    <div class="cab"><span>Classificar a nota em faixas</span></div>
+    <pre><code>=SES([@[Nota Entrevista]]&gt;=4,5;"Excelente";[@[Nota Entrevista]]&gt;=3,5;"Bom";[@[Nota Entrevista]]&gt;=2,5;"Regular";VERDADEIRO;"Baixo")</code></pre>
+    <p class="explica">Testa na ordem e para na primeira verdadeira. O <b>VERDADEIRO</b> final funciona como “senão”.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Prazo de retorno por etapa</span></div>
+    <pre><code>=PARÂMETRO([@Etapa];"Triagem";3;"Entrevista RH";2;"Entrevista gestor";2;"Proposta";1;5)</code></pre>
+    <p class="explica">Compara um valor com uma lista de opções; o último número (5) é o padrão para as demais etapas.</p>
+  </div>
+
+  <h3>Contar, somar e tirar média com condições</h3>
+  <p>São as funções que mais aparecem em relatórios de recrutamento. Use sempre a versão com <strong>S</strong> no final (CONT.SES, SOMASES, MÉDIASES): elas aceitam uma ou várias condições.</p>
+  <div class="formula">
+    <div class="cab"><span>Quantos candidatos vieram do LinkedIn</span></div>
+    <pre><code>=CONT.SES(tbl_Candidatos[Fonte];"LinkedIn")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Quantos da VG-003 estão em andamento</span></div>
+    <pre><code>=CONT.SES(tbl_Candidatos[Cód. Vaga];"VG-003";tbl_Candidatos[Status];"Em andamento")</code></pre>
+    <p class="explica">Os pares são (onde procurar; o que procurar). Todas as condições precisam bater.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Condição vinda de uma célula (painel com filtro)</span></div>
+    <pre><code>=CONT.SES(tbl_Candidatos[Recrutador];$B$1;tbl_Candidatos[Data Inscrição];"&gt;="&amp;$B$2)</code></pre>
+    <p class="explica">B1 tem o nome do recrutador e B2 a data inicial. Repare no <b>"&gt;="&amp;</b>: o operador vai entre aspas e é colado na célula com &amp;.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Média da nota dos candidatos de Indicação</span></div>
+    <pre><code>=MÉDIASES(tbl_Candidatos[Nota Entrevista];tbl_Candidatos[Fonte];"Indicação")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Soma das pretensões dos contratados (orçamento)</span></div>
+    <pre><code>=SOMASES(tbl_Candidatos[Pretensão Salarial];tbl_Candidatos[Status];"Contratado")</code></pre>
+  </div>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Critério</th><th>Significa</th></tr></thead>
+    <tbody>
+      <tr><td><code>"LinkedIn"</code></td><td>Igual a LinkedIn (não diferencia maiúsculas).</td></tr>
+      <tr><td><code>"&lt;&gt;Reprovado"</code></td><td>Diferente de Reprovado.</td></tr>
+      <tr><td><code>"&gt;=4"</code></td><td>Maior ou igual a 4.</td></tr>
+      <tr><td><code>"*Dev*"</code></td><td>Contém “Dev” em qualquer posição (* = qualquer texto).</td></tr>
+      <tr><td><code>"&lt;&gt;"</code></td><td>Não está vazio.</td></tr>
+      <tr><td><code>""</code></td><td>Está vazio.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Outras funções do dia a dia</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Função</th><th>Exemplo</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td>CONT.VALORES</td><td><code>=CONT.VALORES(tbl_Candidatos[ID])</code></td><td>Total de candidatos.</td></tr>
+      <tr><td>CONTAR.VAZIO</td><td><code>=CONTAR.VAZIO(tbl_Candidatos[Telefone])</code></td><td>Quantos sem telefone.</td></tr>
+      <tr><td>MÁXIMO / MÍNIMO</td><td><code>=MÁXIMO(tbl_Candidatos[Nota Entrevista])</code></td><td>Maior nota.</td></tr>
+      <tr><td>MAIOR / MENOR</td><td><code>=MAIOR(tbl_Candidatos[Nota Entrevista];3)</code></td><td>3ª maior nota.</td></tr>
+      <tr><td>ARRED</td><td><code>=ARRED(MÉDIA(...);1)</code></td><td>Arredonda para 1 casa.</td></tr>
+      <tr><td>SEERRO</td><td><code>=SEERRO(A2/B2;0)</code></td><td>Troca erro (como divisão por zero) por 0.</td></tr>
+      <tr><td>SUBTOTAL</td><td><code>=SUBTOTAL(103;tbl_Candidatos[ID])</code></td><td>Conta só as linhas visíveis no filtro.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Equivalências português ↔ inglês</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Português</th><th>Inglês</th><th>Português</th><th>Inglês</th></tr></thead>
+    <tbody>
+      <tr><td>SE</td><td>IF</td><td>PROCX</td><td>XLOOKUP</td></tr>
+      <tr><td>SES</td><td>IFS</td><td>PROCV</td><td>VLOOKUP</td></tr>
+      <tr><td>E / OU / NÃO</td><td>AND / OR / NOT</td><td>ÍNDICE / CORRESP</td><td>INDEX / MATCH</td></tr>
+      <tr><td>CONT.SES</td><td>COUNTIFS</td><td>FILTRO</td><td>FILTER</td></tr>
+      <tr><td>SOMASES</td><td>SUMIFS</td><td>ÚNICO</td><td>UNIQUE</td></tr>
+      <tr><td>MÉDIASES</td><td>AVERAGEIFS</td><td>CLASSIFICAR</td><td>SORT</td></tr>
+      <tr><td>SEERRO</td><td>IFERROR</td><td>ARRUMAR</td><td>TRIM</td></tr>
+      <tr><td>HOJE</td><td>TODAY</td><td>PRI.MAIÚSCULA</td><td>PROPER</td></tr>
+      <tr><td>DIATRABALHOTOTAL</td><td>NETWORKDAYS</td><td>SUBSTITUIR</td><td>SUBSTITUTE</td></tr>
+      <tr><td>DIATRABALHO</td><td>WORKDAY</td><td>LOCALIZAR</td><td>SEARCH</td></tr>
+      <tr><td>SOMARPRODUTO</td><td>SUMPRODUCT</td><td>UNIRTEXTO</td><td>TEXTJOIN</td></tr>
+      <tr><td>PARÂMETRO</td><td>SWITCH</td><td>TEXTOANTES</td><td>TEXTBEFORE</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="quiz" data-correta="0" data-explica="Os critérios de CONT.SES vêm em pares (intervalo; critério), e todas as condições precisam ser verdadeiras.">
+    <p class="pergunta">Qual fórmula conta os candidatos de Hunting que foram contratados?</p>
+    <div class="opcoes">
+      <button class="opcao" type="button">=CONT.SES(tbl_Candidatos[Fonte];"Hunting";tbl_Candidatos[Status];"Contratado")</button>
+      <button class="opcao" type="button">=CONT.SE(tbl_Candidatos[Fonte];"Hunting";"Contratado")</button>
+      <button class="opcao" type="button">=SOMASES(tbl_Candidatos[Fonte];"Hunting")</button>
+    </div>
+    <p class="retorno" aria-live="polite"></p>
+  </div>
+  <button class="concluir" data-modulo="formulas" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 7 =============================== -->
+<section class="modulo" id="datas" aria-labelledby="t-datas">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 7</span>
+      <h2 id="t-datas">Datas, prazos e SLA</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">25 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Calcular dias corridos e dias úteis (com feriados).</li><li>Descobrir candidatos parados e vagas com SLA estourado.</li><li>Agrupar por mês e semana.</li></ul>
+  </div>
+  <p>Para o Excel, uma data é um número (dias desde 01/01/1900) com formato de data. Por isso dá para subtrair uma da outra. <kbd>Ctrl</kbd> + <kbd>;</kbd> insere a data de hoje fixa, ótimo para registrar a última movimentação.</p>
+
+  <h3>Funções de data</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Função</th><th>Exemplo</th><th>Para quê</th></tr></thead>
+    <tbody>
+      <tr><td>HOJE</td><td><code>=HOJE()</code></td><td>Data atual, atualiza sozinha todo dia.</td></tr>
+      <tr><td>Subtração</td><td><code>=HOJE()-[@[Data Inscrição]]</code></td><td>Dias corridos.</td></tr>
+      <tr><td>DIATRABALHOTOTAL</td><td><code>=DIATRABALHOTOTAL(M2;HOJE();Feriados)</code></td><td>Dias úteis, descontando fim de semana e feriados.</td></tr>
+      <tr><td>DIATRABALHO</td><td><code>=DIATRABALHO([@[Data Abertura]];[@SLA];Feriados)</code></td><td>Data-limite da vaga.</td></tr>
+      <tr><td>DATADIF</td><td><code>=DATADIF(A2;HOJE();"m")</code></td><td>Meses completos (“y” anos, “d” dias).</td></tr>
+      <tr><td>FIMMÊS</td><td><code>=FIMMÊS(HOJE();0)</code></td><td>Último dia do mês atual.</td></tr>
+      <tr><td>TEXTO</td><td><code>=TEXTO(M2;"mmm/aa")</code></td><td>Rótulo de mês, ex.: set/26.</td></tr>
+      <tr><td>NÚMSEMANA</td><td><code>=NÚMSEMANA(M2;2)</code></td><td>Semana do ano (começando na segunda).</td></tr>
+      <tr><td>DIA.DA.SEMANA</td><td><code>=DIA.DA.SEMANA(M2;2)</code></td><td>1 = segunda ... 7 = domingo.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Cadastre os feriados</h3>
+  <p>Na aba Listas, crie uma coluna com os feriados nacionais e locais do ano e dê o nome <strong>Feriados</strong> ao intervalo: selecione as datas, clique na <em>Caixa de Nome</em> (à esquerda da barra de fórmulas), digite <code>Feriados</code> e <kbd>Enter</kbd>.</p>
+
+  <h3>Fórmulas prontas de prazo</h3>
+  <div class="formula">
+    <div class="cab"><span>Dias úteis no processo (para quando contrata)</span></div>
+    <pre><code>=SE([@[Data Inscrição]]="";"";DIATRABALHOTOTAL([@[Data Inscrição]];SE([@[Data Contratação]]="";HOJE();[@[Data Contratação]]);Feriados))</code></pre>
+    <p class="explica">Se já foi contratado, conta até a contratação. Se não, até hoje.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Dias úteis sem retorno ao candidato</span></div>
+    <pre><code>=SE([@Status]&lt;&gt;"Em andamento";"";DIATRABALHOTOTAL([@[Última Movimentação]];HOJE();Feriados)-1)</code></pre>
+    <p class="explica">O “-1” faz a contagem começar em zero no dia da movimentação. Combine com formatação condicional (módulo 10) para pintar de amarelo quem passou de 5 dias.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Prazo da vaga (aba Vagas)</span></div>
+    <pre><code>=DIATRABALHO([@[Data Abertura]];[@[SLA (dias úteis)]];Feriados)</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Situação do SLA</span></div>
+    <pre><code>=SES([@[Status Vaga]]&lt;&gt;"Aberta";"—";HOJE()&gt;[@Prazo];"Estourado";[@Prazo]-HOJE()&lt;=5;"Vence em breve";VERDADEIRO;"No prazo")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Mês de inscrição (para agrupar)</span></div>
+    <pre><code>=TEXTO([@[Data Inscrição]];"aaaa-mm")</code></pre>
+    <p class="explica">O formato ano-mês (2026-09) ordena certo em filtros e gráficos.</p>
+  </div>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">HOJE() muda todo dia</span>
+    <p>Use <code>HOJE()</code> para contagens “até agora”. Para registrar <em>quando</em> algo aconteceu (data da entrevista, data da proposta), digite a data ou use <kbd>Ctrl</kbd> + <kbd>;</kbd>, que grava um valor fixo.</p>
+  </div>
+  <div class="caixa-info dica">
+    <span class="rotulo">Mostrar data com dia da semana</span>
+    <p>Selecione as células, <kbd>Ctrl</kbd> + <kbd>1</kbd> › <em>Personalizado</em> › digite <code>ddd dd/mm</code>. Fica “qui 12/11”: ótimo para agenda de entrevistas.</p>
+  </div>
+  <button class="concluir" data-modulo="datas" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 8 =============================== -->
+<section class="modulo" id="procx" aria-labelledby="t-procx">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 8</span>
+      <h2 id="t-procx">PROCX: cruzar candidatos com vagas</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">25 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Trazer dados de outra aba ou planilha pela chave (código da vaga, e-mail).</li><li>Comparar duas listas (quem está na exportação nova e não está na base).</li></ul>
+  </div>
+  <p>Na aba Candidatos você digita só o <strong>Cód. Vaga</strong>. Cargo, gestor e área vêm da aba Vagas. Se o nome do cargo mudar, muda em um lugar só.</p>
+
+  <div class="formula">
+    <div class="cab"><span>Sintaxe</span></div>
+    <pre><code>=PROCX(o_que_procurar; onde_procurar; o_que_devolver; [se_não_achar])</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Cargo da vaga do candidato</span></div>
+    <pre><code>=PROCX([@[Cód. Vaga]];tbl_Vagas[Código];tbl_Vagas[Cargo];"Vaga não encontrada")</code></pre>
+    <p class="explica">Procura o código desta linha na coluna Código da aba Vagas e devolve o Cargo da mesma linha.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Gestor da vaga</span></div>
+    <pre><code>=PROCX([@[Cód. Vaga]];tbl_Vagas[Código];tbl_Vagas[Gestor];"")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Achar o e-mail de um candidato pelo ID digitado em B1</span></div>
+    <pre><code>=PROCX(B1;tbl_Candidatos[ID];tbl_Candidatos[E-mail];"ID não existe")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Devolver várias colunas de uma vez (Nome até Telefone)</span></div>
+    <pre><code>=PROCX(B1;tbl_Candidatos[ID];tbl_Candidatos[[Nome]:[Telefone]])</code></pre>
+    <p class="explica">O resultado se “espalha” pelas células vizinhas. Deixe espaço livre à direita.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Última movimentação registrada de um e-mail (busca de baixo para cima)</span></div>
+    <pre><code>=PROCX(B1;tbl_Candidatos[E-mail];tbl_Candidatos[Etapa];"Novo";0;-1)</code></pre>
+    <p class="explica">O 5º argumento (0) é correspondência exata; o 6º (-1) procura do fim para o começo, achando o registro mais recente.</p>
+  </div>
+
+  <h3>Comparar duas listas</h3>
+  <p>Chegou uma nova exportação da plataforma. Quem ainda não está na sua base?</p>
+  <div class="formula">
+    <div class="cab"><span>Na nova lista, coluna “Já cadastrado?”</span></div>
+    <pre><code>=SE(É.NÃO.DISP(CORRESP(MINÚSCULA(ARRUMAR(B2));tbl_Candidatos[E-mail];0));"Novo";"Já na base")</code></pre>
+    <p class="explica"><b>CORRESP</b> diz em que posição o e-mail aparece; se não aparece, dá #N/D, e <b>É.NÃO.DISP</b> transforma isso em “Novo”.</p>
+  </div>
+
+  <h3>Se o seu Excel não tem PROCX</h3>
+  <div class="formula">
+    <div class="cab"><span>ÍNDICE + CORRESP (funciona em qualquer versão)</span></div>
+    <pre><code>=SEERRO(ÍNDICE(Vagas!$B:$B;CORRESP(F2;Vagas!$A:$A;0));"Vaga não encontrada")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>PROCV (o clássico)</span></div>
+    <pre><code>=SEERRO(PROCV(F2;Vagas!$A:$H;2;FALSO);"Vaga não encontrada")</code></pre>
+    <p class="explica">Limitações: só procura na primeira coluna, o “2” quebra se alguém inserir uma coluna, e esquecer o <b>FALSO</b> traz resultado errado sem avisar.</p>
+  </div>
+
+  <div class="caixa-info erro">
+    <span class="rotulo">Por que deu #N/D?</span>
+    <ul>
+      <li>Espaço sobrando: “VG-003 ” ≠ “VG-003”. Use <code>ARRUMAR</code>.</li>
+      <li>Número x texto: 123 (número) ≠ "123" (texto).</li>
+      <li>O código realmente não existe na outra aba.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="procx" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 9 =============================== -->
+<section class="modulo" id="matriz" aria-labelledby="t-matriz">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 9</span>
+      <h2 id="t-matriz">FILTRO, ÚNICO e CLASSIFICAR: listas que se montam sozinhas</h2>
+      <div class="meta"><span class="chip nivel-3">Avançado</span><span class="chip">25 min</span><span class="chip">Excel 365 / 2021+</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Gerar listas de shortlist, pendências e relatórios que se atualizam sozinhos.</li></ul>
+  </div>
+  <p>Essas funções devolvem vários resultados de uma vez, que se “derramam” pelas células abaixo. Escreva em uma célula com espaço livre embaixo e à direita.</p>
+
+  <div class="formula">
+    <div class="cab"><span>Shortlist: candidatos com nota ≥ 4,5 e em andamento</span></div>
+    <pre><code>=FILTRO(tbl_Candidatos[[Nome]:[E-mail]];(tbl_Candidatos[Nota Entrevista]&gt;=4,5)*(tbl_Candidatos[Status]="Em andamento");"Ninguém ainda")</code></pre>
+    <p class="explica">Multiplicar <b>*</b> as condições = “E”. Somar <b>+</b> = “OU”.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Minha fila de retorno (recrutador em B1), mais parados primeiro</span></div>
+    <pre><code>=CLASSIFICARPOR(FILTRO(tbl_Candidatos[[ID]:[Nome]];(tbl_Candidatos[Recrutador]=B1)*(tbl_Candidatos[Status]="Em andamento"));FILTRO(tbl_Candidatos[Dias parado];(tbl_Candidatos[Recrutador]=B1)*(tbl_Candidatos[Status]="Em andamento"));-1)</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Lista das fontes usadas, sem repetir, em ordem alfabética</span></div>
+    <pre><code>=CLASSIFICAR(ÚNICO(tbl_Candidatos[Fonte]))</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Tabela de contagem automática por fonte</span></div>
+    <pre><code>=LET(f;CLASSIFICAR(ÚNICO(tbl_Candidatos[Fonte]));EMPILHARH(f;CONT.SES(tbl_Candidatos[Fonte];f)))</code></pre>
+    <p class="explica">Cria a lista de fontes e, ao lado, quantos candidatos cada uma trouxe. Surgiu fonte nova? Aparece sozinha.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Top 5 notas</span></div>
+    <pre><code>=PEGAR(CLASSIFICARPOR(tbl_Candidatos[[Nome]:[Cargo]];tbl_Candidatos[Nota Entrevista];-1);5)</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>E-mails dos aprovados para a próxima etapa, prontos para o Outlook</span></div>
+    <pre><code>=UNIRTEXTO("; ";VERDADEIRO;FILTRO(tbl_Candidatos[E-mail];(tbl_Candidatos[Cód. Vaga]="VG-003")*(tbl_Candidatos[Etapa]="Entrevista gestor")))</code></pre>
+    <p class="explica">Cole no campo <b>Cco</b> do e-mail para não expor os endereços entre candidatos.</p>
+  </div>
+
+  <div class="caixa-info erro">
+    <span class="rotulo">#DESPEJAR!</span>
+    <p>Tem alguma coisa ocupando as células onde o resultado precisa aparecer. Apague o que está no caminho. Essas fórmulas também não funcionam <em>dentro</em> de uma Tabela: use em uma aba de relatório.</p>
+  </div>
+  <button class="concluir" data-modulo="matriz" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 10 =============================== -->
+<section class="modulo" id="condicional" aria-labelledby="t-cond">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 10</span>
+      <h2 id="t-cond">Formatação condicional: a planilha avisa você</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">20 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Destacar a linha inteira de candidatos parados, contratados e vagas atrasadas.</li><li>Usar barras de dados e ícones sem exagero.</li></ul>
+  </div>
+
+  <div class="tabela-rolagem"><table class="planilha"><thead><tr><th></th><th>Nome</th><th>Etapa</th><th>Status</th><th>Dias parado</th></tr></thead><tbody>
+    <tr><td>2</td><td>Mariana Silva</td><td>Entrevista RH</td><td>Em andamento</td><td>1</td></tr>
+    <tr class="amarelo"><td>3</td><td>Lucas Rocha</td><td>Triagem</td><td>Em andamento</td><td class="ruim">7</td></tr>
+    <tr class="verde"><td>4</td><td>Camila Melo</td><td>Contratado</td><td>Contratado</td><td></td></tr>
+    <tr><td>5</td><td>João Souza</td><td>Teste técnico</td><td>Reprovado</td><td></td></tr>
+  </tbody></table></div>
+
+  <h3>Pintar a linha inteira do candidato parado</h3>
+  <ol class="passos">
+    <li>Selecione os dados da tabela inteira, começando pela linha 2 (ex.: <code>A2:S61</code>).</li>
+    <li><span class="caminho">Página Inicial › Formatação Condicional › Nova Regra</span>.</li>
+    <li>Escolha <strong>Usar uma fórmula para determinar quais células devem ser formatadas</strong>.</li>
+    <li>Digite a fórmula abaixo. O <code>$</code> antes da letra trava a coluna, assim todas as células da linha olham para a mesma coluna.</li>
+    <li>Clique em <strong>Formatar › Preenchimento</strong>, escolha amarelo claro e OK.</li>
+  </ol>
+  <div class="formula">
+    <div class="cab"><span>Regra: em andamento e 5+ dias sem retorno</span></div>
+    <pre><code>=E($L2="Em andamento";$S2&gt;=5)</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Regra: contratado (verde)</span></div>
+    <pre><code>=$L2="Contratado"</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Regra: pretensão acima do teto da vaga</span></div>
+    <pre><code>=$P2&gt;PROCX($F2;Vagas!$A:$A;Vagas!$K:$K;0)</code></pre>
+    <p class="explica">Aqui a coluna K da aba Vagas teria a faixa salarial máxima.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Regra: entrevista marcada para hoje</span></div>
+    <pre><code>=$T2=HOJE()</code></pre>
+  </div>
+
+  <h3>Regras prontas (sem fórmula)</h3>
+  <ul>
+    <li><span class="caminho">Realçar Regras das Células › Valores Duplicados</span>: destaca e-mails repetidos.</li>
+    <li><span class="caminho">Barras de Dados</span> na nota da entrevista: leitura visual imediata.</li>
+    <li><span class="caminho">Realçar Regras das Células › É Igual a</span> “Reprovado” com texto cinza.</li>
+    <li><span class="caminho">Conjuntos de Ícones</span> no SLA: verde, amarelo, vermelho.</li>
+  </ul>
+  <p>Para ver, editar e ordenar as regras: <span class="caminho">Formatação Condicional › Gerenciar Regras</span> (em “Mostrar regras de formatação para”, escolha <em>Esta Planilha</em>).</p>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Boas práticas de cor</span>
+    <ul>
+      <li>No máximo 3 ou 4 cores com significado fixo: amarelo = atenção, vermelho = atrasado, verde = concluído.</li>
+      <li>Não use só a cor para comunicar: tenha também uma coluna de texto (“Atenção”, “Estourado”) para quem tem daltonismo e para filtrar.</li>
+      <li>Coloque uma legenda no topo do painel.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="condicional" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 11 =============================== -->
+<section class="modulo" id="filtros" aria-labelledby="t-filtros">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 11</span>
+      <h2 id="t-filtros">Classificar, filtrar e segmentar</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">15 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Responder perguntas rápidas filtrando a base.</li><li>Criar botões de filtro (segmentação) para o gestor usar sem medo.</li></ul>
+  </div>
+
+  <h3>Filtro</h3>
+  <ol class="passos">
+    <li>Na Tabela, as setas já estão no cabeçalho. Fora de Tabela: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>.</li>
+    <li>Clique na seta de <strong>Status</strong>, desmarque <em>Selecionar Tudo</em> e marque <em>Em andamento</em>.</li>
+    <li>Combine com outra coluna: seta de <strong>Recrutador</strong> › <em>Ana Lima</em>.</li>
+    <li>Filtros especiais: em números, <em>Filtros de Número › Maior ou igual a</em> 5 (Dias parado). Em datas, <em>Filtros de Data › Este Mês</em>.</li>
+    <li>Limpar tudo: <span class="caminho">Dados › Limpar</span>.</li>
+  </ol>
+  <div class="caixa-info dica">
+    <span class="rotulo">Filtro por seleção</span>
+    <p>Clique com o botão direito em uma célula com “LinkedIn” › <em>Filtrar › Filtrar pelo Valor da Célula Selecionada</em>. Um clique.</p>
+  </div>
+
+  <h3>Classificar por mais de um critério</h3>
+  <p><span class="caminho">Dados › Classificar</span> › <em>Adicionar Nível</em>. Exemplo de fila de trabalho do dia:</p>
+  <ol>
+    <li>Status (A a Z)</li>
+    <li>Dias parado (Do Maior para o Menor)</li>
+    <li>Nota Entrevista (Do Maior para o Menor)</li>
+  </ol>
+  <p>Para ordenar as etapas na ordem do funil (e não alfabética): em <em>Ordem</em>, escolha <strong>Lista Personalizada</strong> e digite as etapas na sequência, uma por linha.</p>
+
+  <h3>Segmentação de dados (botões de filtro)</h3>
+  <ol class="passos">
+    <li>Clique dentro da Tabela.</li>
+    <li><span class="caminho">Design da Tabela › Inserir Segmentação de Dados</span> (ou <span class="caminho">Inserir › Segmentação de Dados</span>).</li>
+    <li>Marque <strong>Recrutador</strong>, <strong>Cód. Vaga</strong> e <strong>Status</strong>. OK.</li>
+    <li>Clique nos botões para filtrar; <kbd>Ctrl</kbd> + clique seleciona vários; o ícone de funil com X limpa.</li>
+    <li>Na guia <span class="caminho">Segmentação</span>, ajuste colunas e estilo (escolha um azul).</li>
+  </ol>
+  <p>Para filtrar por período: em tabelas dinâmicas use <span class="caminho">Inserir › Linha do Tempo</span> na coluna Data Inscrição.</p>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">Planilha compartilhada</span>
+    <p>No Excel na nuvem com várias pessoas, use <span class="caminho">Exibir › Modo de Exibição de Planilha › Novo</span>. Você filtra só para você, sem bagunçar a tela dos colegas.</p>
+  </div>
+  <button class="concluir" data-modulo="filtros" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 12 =============================== -->
+<section class="modulo" id="dinamica" aria-labelledby="t-dinamica">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 12</span>
+      <h2 id="t-dinamica">Tabela dinâmica: relatórios em segundos</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">30 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Criar relatórios de candidatos por vaga, etapa, fonte e recrutador sem escrever fórmulas.</li><li>Mostrar porcentagens e agrupar por mês.</li></ul>
+  </div>
+
+  <h3>Criando a primeira</h3>
+  <ol class="passos">
+    <li>Clique dentro de <code>tbl_Candidatos</code>.</li>
+    <li><span class="caminho">Inserir › Tabela Dinâmica</span> › <em>Nova Planilha</em> › OK.</li>
+    <li>No painel à direita, arraste os campos para as quatro áreas.</li>
+  </ol>
+  <div class="grade">
+    <div class="cartao"><h4>Linhas</h4><p>O que vira linha. Ex.: Cargo.</p></div>
+    <div class="cartao"><h4>Colunas</h4><p>O que vira coluna. Ex.: Etapa.</p></div>
+    <div class="cartao"><h4>Valores</h4><p>O que é contado ou somado. Ex.: ID (Contagem).</p></div>
+    <div class="cartao"><h4>Filtros</h4><p>Filtro geral do relatório. Ex.: Recrutador.</p></div>
+  </div>
+
+  <h3>Relatórios prontos para montar</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Pergunta</th><th>Linhas</th><th>Colunas</th><th>Valores</th></tr></thead>
+    <tbody>
+      <tr><td>Quantos candidatos em cada etapa por vaga?</td><td>Cargo</td><td>Etapa</td><td>Contagem de ID</td></tr>
+      <tr><td>Qual fonte traz mais candidatos?</td><td>Fonte</td><td>—</td><td>Contagem de ID (% do total)</td></tr>
+      <tr><td>Qual fonte gera contratações?</td><td>Fonte</td><td>Status</td><td>Contagem de ID</td></tr>
+      <tr><td>Carteira de cada recrutador</td><td>Recrutador</td><td>Status</td><td>Contagem de ID</td></tr>
+      <tr><td>Inscrições por mês</td><td>Data Inscrição (agrupada por Meses)</td><td>—</td><td>Contagem de ID</td></tr>
+      <tr><td>Nota média por fonte</td><td>Fonte</td><td>—</td><td>Média de Nota Entrevista</td></tr>
+      <tr><td>Motivos de reprovação</td><td>Motivo</td><td>Etapa</td><td>Contagem de ID</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Ajustes que fazem diferença</h3>
+  <ul>
+    <li><strong>Trocar soma por contagem/média:</strong> clique no campo em Valores › <em>Configurações do Campo de Valor</em>.</li>
+    <li><strong>Porcentagem:</strong> mesmo lugar › guia <em>Mostrar Valores Como</em> › <em>% do Total Geral</em> ou <em>% do Total da Linha</em>.</li>
+    <li><strong>Agrupar datas:</strong> clique com o botão direito numa data › <em>Agrupar</em> › Meses e Anos.</li>
+    <li><strong>Ordenar etapas:</strong> arraste o rótulo da etapa para a posição certa, ou use lista personalizada (módulo 11).</li>
+    <li><strong>Ver quem são:</strong> dê <strong>duplo clique</strong> em um número: o Excel cria uma aba com a lista dos candidatos daquele número.</li>
+    <li><strong>Visual limpo:</strong> <span class="caminho">Design › Layout do Relatório › Mostrar em Formato de Tabela</span>.</li>
+  </ul>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">Ela não atualiza sozinha</span>
+    <p>Depois de mexer na base, clique com o botão direito na tabela dinâmica › <strong>Atualizar</strong>, ou <span class="caminho">Dados › Atualizar Tudo</span> (<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F5</kbd>). Como a origem é uma Tabela, linhas novas entram automaticamente na atualização.</p>
+  </div>
+  <button class="concluir" data-modulo="dinamica" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 13 =============================== -->
+<section class="modulo" id="graficos" aria-labelledby="t-graficos">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 13</span>
+      <h2 id="t-graficos">Gráficos que o gestor entende</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">20 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Escolher o gráfico certo para cada pergunta.</li><li>Criar um funil de recrutamento.</li></ul>
+  </div>
+
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Quero mostrar</th><th>Use</th><th>Evite</th></tr></thead>
+    <tbody>
+      <tr><td>Funil de etapas</td><td>Funil ou barras horizontais em ordem</td><td>Pizza</td></tr>
+      <tr><td>Comparar fontes ou recrutadores</td><td>Barras horizontais, do maior para o menor</td><td>3D</td></tr>
+      <tr><td>Evolução de inscrições por mês</td><td>Linha ou colunas</td><td>Barras horizontais</td></tr>
+      <tr><td>Parte de um todo com 2–4 categorias</td><td>Rosca ou barra 100%</td><td>Pizza com 10 fatias</td></tr>
+      <tr><td>Um número importante</td><td>Cartão grande (célula formatada)</td><td>Gráfico para um número só</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Funil de recrutamento</h3>
+  <ol class="passos">
+    <li>Monte a tabela com Etapa e quantidade (o bloco “Funil” da aba Painel na planilha de prática já está pronto).</li>
+    <li>Selecione as duas colunas.</li>
+    <li><span class="caminho">Inserir › Gráficos Recomendados › Todos os Gráficos › Funil</span> (Excel 2019 / 365).</li>
+    <li>Em versões antigas: <em>Barras empilhadas</em> horizontais, com a ordem de categorias invertida (<span class="caminho">Formatar Eixo › Categorias em ordem inversa</span>).</li>
+  </ol>
+  <p>Gráfico a partir de tabela dinâmica: clique nela › <span class="caminho">Analisar Tabela Dinâmica › Gráfico Dinâmico</span>. Ele já vem com botões de filtro.</p>
+
+  <h3>Checklist de um bom gráfico</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="g1"><label for="g1">Título que diz a conclusão: “Indicação converte 3× mais que LinkedIn”, não “Gráfico 1”.</label></li>
+    <li><input type="checkbox" id="g2"><label for="g2">Rótulos de dados ligados; linhas de grade e legenda removidas se não ajudam.</label></li>
+    <li><input type="checkbox" id="g3"><label for="g3">Uma cor (azul) para tudo e uma cor de destaque para o que importa.</label></li>
+    <li><input type="checkbox" id="g4"><label for="g4">Eixo começando no zero em barras e colunas.</label></li>
+    <li><input type="checkbox" id="g5"><label for="g5">Sem 3D, sombra ou efeito brilhante.</label></li>
+    <li><input type="checkbox" id="g6"><label for="g6">Categorias ordenadas (por valor, ou na ordem do funil).</label></li>
+  </ul>
+  <button class="concluir" data-modulo="graficos" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 14 =============================== -->
+<section class="modulo" id="indicadores" aria-labelledby="t-ind">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 14</span>
+      <h2 id="t-ind">Indicadores de recrutamento (KPIs) com fórmula</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">40 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Calcular os indicadores mais usados no mercado de R&amp;S.</li><li>Saber o que cada um significa e quando ele engana.</li></ul>
+  </div>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Antes de medir: combine a definição</span>
+    <p>“Time to hire” começa na inscrição ou no primeiro contato? Conta dias corridos ou úteis? Termina no aceite ou no primeiro dia? Escreva a definição em uma aba <strong>Leia-me</strong> e mantenha igual o ano todo. Indicador que muda de regra não serve para comparar.</p>
+  </div>
+
+  <h3>Os principais indicadores</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Indicador</th><th>O que mede</th><th>Cálculo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Time to hire</strong></td><td>Velocidade do processo para o candidato</td><td>Dias entre a inscrição (ou 1º contato) e o aceite/contratação</td></tr>
+      <tr><td><strong>Time to fill</strong></td><td>Tempo para preencher a vaga</td><td>Dias entre abertura e fechamento da vaga</td></tr>
+      <tr><td><strong>Conversão por etapa</strong></td><td>Onde o funil perde gente</td><td>Chegaram na etapa ÷ chegaram na etapa anterior</td></tr>
+      <tr><td><strong>Aceite de proposta</strong></td><td>Atratividade da oferta</td><td>Propostas aceitas ÷ propostas feitas</td></tr>
+      <tr><td><strong>Qualidade da fonte</strong></td><td>Qual canal traz gente que avança</td><td>Contratados (ou chegaram à entrevista) da fonte ÷ candidatos da fonte</td></tr>
+      <tr><td><strong>Candidatos por vaga</strong></td><td>Volume e atratividade do anúncio</td><td>Inscritos ÷ vagas</td></tr>
+      <tr><td><strong>Cumprimento de SLA</strong></td><td>Entrega no prazo combinado</td><td>Vagas fechadas no prazo ÷ vagas fechadas</td></tr>
+      <tr><td><strong>Custo por contratação</strong></td><td>Eficiência financeira</td><td>(Custos internos + externos) ÷ contratações</td></tr>
+      <tr><td><strong>Retenção 90 dias</strong></td><td>Qualidade da contratação</td><td>Contratados ainda na empresa após 90 dias ÷ contratados</td></tr>
+      <tr><td><strong>Diversidade do funil</strong></td><td>Equidade do processo</td><td>% por grupo em cada etapa (só com dado autodeclarado e consentido)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>As fórmulas</h3>
+  <div class="formula">
+    <div class="cab"><span>Time to hire médio (dias úteis)</span></div>
+    <pre><code>=MÉDIASES(tbl_Candidatos[Dias no processo];tbl_Candidatos[Status];"Contratado")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Time to hire mediano (menos sensível a casos extremos)</span></div>
+    <pre><code>=MED(FILTRO(tbl_Candidatos[Dias no processo];tbl_Candidatos[Status]="Contratado"))</code></pre>
+    <p class="explica">Uma vaga que demorou 120 dias puxa a média para cima. A <b>mediana</b> mostra o caso típico. Mostre as duas.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Time to fill médio das vagas fechadas</span></div>
+    <pre><code>=MÉDIASES(tbl_Vagas[Dias úteis em aberto];tbl_Vagas[Status Vaga];"Fechada")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Quantos chegaram pelo menos até a etapa 3 (Entrevista RH)</span></div>
+    <pre><code>=CONT.SES(tbl_Candidatos[Nº Etapa];"&gt;="&amp;3)</code></pre>
+    <p class="explica">Por isso existe a coluna <b>Nº Etapa</b> (=CORRESP([@Etapa];Etapas;0)): quem foi reprovado na etapa 5 também passou pela 3. Contar só “Etapa = Entrevista RH” daria um funil errado.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Conversão da etapa 3 para a 5</span></div>
+    <pre><code>=SEERRO(CONT.SES(tbl_Candidatos[Nº Etapa];"&gt;=5")/CONT.SES(tbl_Candidatos[Nº Etapa];"&gt;=3");0)</code></pre>
+    <p class="explica">Formate como porcentagem (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>%</kbd>).</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Aceite de proposta</span></div>
+    <pre><code>=SEERRO(CONT.SES(tbl_Candidatos[Status];"Contratado")/CONT.SES(tbl_Candidatos[Nº Etapa];"&gt;=6");0)</code></pre>
+    <p class="explica">Etapa 6 = Proposta. Todos que chegaram à proposta (aceitando ou não) estão no denominador.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>% de vagas fechadas dentro do SLA</span></div>
+    <pre><code>=SEERRO(CONT.SES(tbl_Vagas[Status Vaga];"Fechada";tbl_Vagas[SLA estourado?];"Não")/CONT.SES(tbl_Vagas[Status Vaga];"Fechada");0)</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Custo por contratação</span></div>
+    <pre><code>=SEERRO((SOMA(tbl_Custos[Valor]))/CONT.SES(tbl_Candidatos[Status];"Contratado");0)</code></pre>
+    <p class="explica">Tabela de custos com anúncios, plataformas, consultoria, testes e horas da equipe.</p>
+  </div>
+
+  <h3>Simulador do funil</h3>
+  <p>Teste com os números de uma vaga sua. Os resultados mudam enquanto você digita.</p>
+  <div id="calc-funil" class="calc">
+    <label>Inscritos<input type="number" min="0" inputmode="numeric" value="240" data-nome="Inscritos"></label>
+    <label>Triados<input type="number" min="0" inputmode="numeric" value="60" data-nome="Triagem"></label>
+    <label>Entrevistados<input type="number" min="0" inputmode="numeric" value="18" data-nome="Entrevistas"></label>
+    <label>Propostas<input type="number" min="0" inputmode="numeric" value="4" data-nome="Propostas"></label>
+    <label>Contratados<input type="number" min="0" inputmode="numeric" value="3" data-nome="Contratados"></label>
+    <label>Nº de vagas<input type="number" min="0" inputmode="numeric" value="3" data-nome="Vagas"></label>
+    <label>Custo total (R$)<input type="number" min="0" inputmode="decimal" value="4500" data-nome="Custo"></label>
+  </div>
+  <div id="saida-funil" class="funil" aria-live="polite"></div>
+  <div id="saida-extras" class="grade" aria-live="polite"></div>
+
+  <div class="caixa-info atencao">
+    <span class="rotulo">Quando o indicador engana</span>
+    <ul>
+      <li>Poucos casos: 1 contratado em 2 candidatos não é “50% de conversão” confiável.</li>
+      <li>Vagas diferentes misturadas: estágio e diretoria no mesmo time to hire. Separe por nível ou área.</li>
+      <li>Processos ainda abertos entram na conta? Normalmente não. Deixe claro.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="indicadores" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 15 =============================== -->
+<section class="modulo" id="painel" aria-labelledby="t-painel">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 15</span>
+      <h2 id="t-painel">Montando o painel (dashboard)</h2>
+      <div class="meta"><span class="chip nivel-3">Avançado</span><span class="chip">45 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Organizar uma aba de painel clara para reunião semanal com gestores.</li></ul>
+  </div>
+
+  <h3>Estrutura sugerida (de cima para baixo)</h3>
+  <ol class="passos">
+    <li><strong>Cabeçalho:</strong> título, período e data de atualização (<code>="Atualizado em "&amp;TEXTO(HOJE();"dd/mm/aaaa")</code>).</li>
+    <li><strong>Filtros:</strong> segmentações de Recrutador, Área e Vaga ligadas às tabelas dinâmicas.</li>
+    <li><strong>Cartões (4 a 6 números):</strong> vagas abertas, candidatos em andamento, contratados no mês, time to hire, % SLA, parados 5+ dias.</li>
+    <li><strong>Funil</strong> da vaga ou do período.</li>
+    <li><strong>Fontes:</strong> barras com candidatos e % que avançou.</li>
+    <li><strong>Lista de ação:</strong> vagas com SLA estourado e candidatos parados (FILTRO, módulo 9).</li>
+  </ol>
+
+  <div class="grade">
+    <div class="cartao"><h4>Vagas abertas</h4><p class="grande">4</p><p>2 com SLA estourado</p></div>
+    <div class="cartao"><h4>Em andamento</h4><p class="grande">23</p><p>6 parados há 5+ dias</p></div>
+    <div class="cartao"><h4>Time to hire</h4><p class="grande">28 dias</p><p>mediana: 24</p></div>
+    <div class="cartao"><h4>Aceite de proposta</h4><p class="grande">75%</p><p>3 de 4</p></div>
+  </div>
+
+  <h3>Passo a passo de um cartão</h3>
+  <ol class="passos">
+    <li>Mescle não! Selecione 3 células lado a lado e use <span class="caminho">Ctrl+1 › Alinhamento › Centralizar seleção</span>.</li>
+    <li>Linha de cima: rótulo (“Vagas abertas”), fonte 10, cinza.</li>
+    <li>Linha do meio: a fórmula, fonte 24, negrito, azul.</li>
+    <li>Linha de baixo: contexto (“2 com SLA estourado”), fonte 9.</li>
+    <li>Fundo branco ou azul muito claro, borda fina. Tire as linhas de grade: <span class="caminho">Exibir › desmarque Linhas de Grade</span>.</li>
+  </ol>
+
+  <h3>Boas práticas de painel</h3>
+  <ul>
+    <li>Painel só <strong>lê</strong> dados; nunca digite nada nele. Toda informação vem das abas de base.</li>
+    <li>Uma tela de notebook sem rolar, se possível. Se não couber, o mais importante fica em cima à esquerda.</li>
+    <li>Compare com algo: meta, mês anterior, média. “28 dias” sozinho não diz se é bom.</li>
+    <li>Proteja a aba (módulo 18) e deixe uma célula com “Como ler este painel”.</li>
+    <li>Revise com alguém de fora: em 10 segundos a pessoa sabe o que precisa de atenção?</li>
+  </ul>
+  <p>Na planilha de prática, a aba <strong>Painel</strong> já traz os indicadores, o funil, o desempenho por fonte e a carteira por recrutador, todos calculados por fórmula.</p>
+  <button class="concluir" data-modulo="painel" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 16 =============================== -->
+<section class="modulo" id="scorecard" aria-labelledby="t-score">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 16</span>
+      <h2 id="t-score">Scorecard de entrevista: decisão mais justa</h2>
+      <div class="meta"><span class="chip nivel-2">Intermediário</span><span class="chip">20 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Montar uma avaliação estruturada com pesos.</li><li>Comparar candidatos e entrevistadores com a mesma régua.</li></ul>
+  </div>
+  <p>Entrevista estruturada, com as mesmas competências e a mesma escala para todos, reduz vieses e facilita justificar a decisão para o gestor e para o candidato.</p>
+
+  <div class="tabela-rolagem"><table class="planilha">
+    <thead><tr><th></th><th>A — Competência</th><th>B — Peso</th><th>C — Cand. A</th><th>D — Cand. B</th></tr></thead>
+    <tbody>
+      <tr><td>5</td><td>Conhecimento técnico</td><td>30%</td><td>4</td><td>5</td></tr>
+      <tr><td>6</td><td>Comunicação</td><td>20%</td><td>5</td><td>3</td></tr>
+      <tr><td>7</td><td>Resolução de problemas</td><td>25%</td><td>4</td><td>4</td></tr>
+      <tr><td>8</td><td>Fit com valores</td><td>15%</td><td>3</td><td>4</td></tr>
+      <tr><td>9</td><td>Experiência relevante</td><td>10%</td><td>4</td><td>5</td></tr>
+      <tr><td>11</td><td><strong>Nota final</strong></td><td>100%</td><td class="ok">4,05</td><td class="ok">4,20</td></tr>
+    </tbody>
+  </table></div>
+  <div class="formula">
+    <div class="cab"><span>Nota ponderada</span></div>
+    <pre><code>=SOMARPRODUTO($B$5:$B$9;C5:C9)</code></pre>
+    <p class="explica">Multiplica cada nota pelo seu peso e soma tudo. Os pesos precisam somar 100%: confira com <b>=SOMA(B5:B9)</b>.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Recomendação automática</span></div>
+    <pre><code>=SES(C11&gt;=4;"Avançar";C11&gt;=3;"Avaliar com gestor";VERDADEIRO;"Não avançar")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Alguma competência eliminatória abaixo de 3?</span></div>
+    <pre><code>=SE(CONT.SE(C5:C6;"&lt;3")&gt;0;"Eliminado em competência obrigatória";"OK")</code></pre>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Média de vários entrevistadores para o mesmo candidato</span></div>
+    <pre><code>=MÉDIASES(tbl_Avaliacoes[Nota final];tbl_Avaliacoes[ID Candidato];[@ID])</code></pre>
+    <p class="explica">Com uma tabela de avaliações (uma linha por entrevistador), dá também para ver se algum entrevistador dá notas sempre muito mais altas ou baixas que os outros.</p>
+  </div>
+
+  <div class="caixa-info dica">
+    <span class="rotulo">Boas práticas</span>
+    <ul>
+      <li>Defina pesos e critérios com o gestor <strong>antes</strong> de abrir a vaga.</li>
+      <li>Descreva o que é nota 1, 3 e 5 em cada competência (âncoras de comportamento).</li>
+      <li>Cada entrevistador preenche sozinho antes de conversar com os outros.</li>
+      <li>Escreva evidências (o que a pessoa disse ou fez), não impressões.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="scorecard" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 17 =============================== -->
+<section class="modulo" id="colaboracao" aria-labelledby="t-colab">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 17</span>
+      <h2 id="t-colab">Trabalho em equipe: compartilhar sem bagunça</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">15 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Compartilhar com as permissões certas, comentar, mencionar colegas e recuperar versões.</li></ul>
+  </div>
+
+  <h3>Compartilhar</h3>
+  <ol class="passos">
+    <li>Salve o arquivo no OneDrive ou na pasta do time no SharePoint/Teams.</li>
+    <li>Clique em <strong>Compartilhar</strong> (canto superior direito).</li>
+    <li>Escolha <strong>Pessoas específicas</strong> e digite os nomes. Evite “Qualquer pessoa com o link”.</li>
+    <li>Defina <strong>Pode editar</strong> (equipe de R&amp;S) ou <strong>Pode exibir</strong> (gestores que só consultam).</li>
+  </ol>
+
+  <h3>Comentários e menções</h3>
+  <ul>
+    <li><span class="caminho">Revisão › Novo Comentário</span> (ou botão direito › Novo Comentário).</li>
+    <li>Digite <code>@</code> e o nome do colega: ele recebe aviso por e-mail com link direto para a célula. Ex.: “@Bruno, consegue retorno da candidata até sexta?”.</li>
+    <li>Marque como <strong>Resolvido</strong> quando terminar. A conversa fica no histórico.</li>
+    <li><strong>Notas</strong> (antigos comentários amarelos) são para lembretes fixos; <strong>Comentários</strong> são para conversa.</li>
+  </ul>
+
+  <h3>Histórico de versões</h3>
+  <p>Alguém apagou uma coluna? <span class="caminho">Arquivo › Informações › Histórico de Versões</span>. Abra a versão anterior, copie o que precisa ou restaure tudo.</p>
+
+  <h3>Regras de convivência da planilha do time</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c1"><label for="c1">Uma pessoa é “dona” da estrutura (colunas, listas, fórmulas). Os demais só preenchem.</label></li>
+    <li><input type="checkbox" id="c2"><label for="c2">Ninguém insere coluna no meio da tabela sem combinar.</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3">Filtros pessoais com Modo de Exibição de Planilha (módulo 11).</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4">Aba Leia-me com as definições das colunas e dos indicadores.</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5">Atualização da etapa no mesmo dia do contato com o candidato.</label></li>
+  </ul>
+  <button class="concluir" data-modulo="colaboracao" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 18 =============================== -->
+<section class="modulo" id="lgpd" aria-labelledby="t-lgpd">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 18</span>
+      <h2 id="t-lgpd">LGPD e segurança dos dados de candidatos</h2>
+      <div class="meta"><span class="chip nivel-2">Essencial</span><span class="chip">20 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Saber o que pode e o que não deve ficar na planilha.</li><li>Proteger fórmulas e limitar acesso.</li></ul>
+  </div>
+  <p>Planilha de candidatos é cheia de <strong>dados pessoais</strong>. A Lei Geral de Proteção de Dados (Lei 13.709/2018) se aplica a ela como a qualquer sistema. As orientações abaixo são boas práticas gerais; siga sempre a política interna e consulte o encarregado de dados (DPO) ou o jurídico da empresa.</p>
+
+  <h3>Princípios na prática</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Princípio</th><th>Na planilha</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Finalidade</strong></td><td>Os dados servem para o processo seletivo. Não use a base para outros fins (marketing, por exemplo).</td></tr>
+      <tr><td><strong>Necessidade</strong></td><td>Só colete o que precisa na etapa. CPF, RG, endereço completo e data de nascimento normalmente só na admissão, não na triagem.</td></tr>
+      <tr><td><strong>Dados sensíveis</strong></td><td>Saúde, origem racial ou étnica, religião, opinião política, filiação sindical, vida sexual, biometria: não coloque na planilha geral. Dados de diversidade, só autodeclarados, com finalidade clara e separados.</td></tr>
+      <tr><td><strong>Transparência e consentimento</strong></td><td>Para manter no banco de talentos depois do processo, registre o aceite do candidato e a data.</td></tr>
+      <tr><td><strong>Retenção</strong></td><td>Defina por quanto tempo guardar (ex.: 12 meses no banco de talentos) e apague ou anonimize depois.</td></tr>
+      <tr><td><strong>Segurança</strong></td><td>Acesso só para quem precisa, arquivo na nuvem corporativa, nada de cópias soltas.</td></tr>
+      <tr><td><strong>Direitos do titular</strong></td><td>Se o candidato pedir para ver, corrigir ou excluir os dados, você precisa achar tudo dele rápido (por isso o e-mail padronizado).</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="formula">
+    <div class="cab"><span>Marcar registros que passaram do prazo de retenção (12 meses)</span></div>
+    <pre><code>=SE(E([@Status]&lt;&gt;"Em andamento";[@[Última Movimentação]]&lt;DATAM(HOJE();-12));"Revisar exclusão";"")</code></pre>
+    <p class="explica"><b>DATAM</b> volta 12 meses a partir de hoje. Filtre “Revisar exclusão” uma vez por mês.</p>
+  </div>
+  <div class="formula">
+    <div class="cab"><span>Anonimizar para enviar relatório (iniciais)</span></div>
+    <pre><code>=ESQUERDA([@Nome];1)&amp;". "&amp;ESQUERDA(TEXTODEPOIS([@Nome];" ";-1);1)&amp;"."</code></pre>
+    <p class="explica">“Mariana Silva” vira “M. S.”. Para relatórios de indicadores, envie só números, sem nomes.</p>
+  </div>
+
+  <h3>Proteger a planilha</h3>
+  <ol class="passos">
+    <li>Selecione as células que podem ser editadas (colunas de preenchimento), <kbd>Ctrl</kbd>+<kbd>1</kbd> › <em>Proteção</em> › desmarque <strong>Bloqueadas</strong>.</li>
+    <li><span class="caminho">Revisão › Proteger Planilha</span>. Marque o que o usuário pode fazer (ex.: <em>Usar AutoFiltro</em>, <em>Usar tabela dinâmica</em>). Defina senha se quiser.</li>
+    <li>Para impedir apagar ou renomear abas: <span class="caminho">Revisão › Proteger Pasta de Trabalho</span>.</li>
+    <li>Para exigir senha para abrir: <span class="caminho">Arquivo › Informações › Proteger Pasta de Trabalho › Criptografar com Senha</span>.</li>
+  </ol>
+  <div class="caixa-info erro">
+    <span class="rotulo">Mitos perigosos</span>
+    <ul>
+      <li><strong>Ocultar coluna não protege nada.</strong> Qualquer pessoa reexibe em dois cliques. Dado que alguém não pode ver não deve estar no arquivo dela.</li>
+      <li><strong>Proteger planilha não é criptografia.</strong> Ela evita erro acidental, não acesso indevido. Quem controla acesso é a permissão do compartilhamento.</li>
+      <li>Antes de enviar um arquivo para fora, rode <span class="caminho">Arquivo › Informações › Verificar Problemas › Inspecionar Documento</span> para remover comentários, dados ocultos e nomes de autores.</li>
+    </ul>
+  </div>
+  <div class="caixa-info atencao">
+    <span class="rotulo">No dia a dia</span>
+    <ul>
+      <li>Ao mandar e-mail para vários candidatos, use <strong>Cco</strong>.</li>
+      <li>Não envie a planilha por WhatsApp nem guarde no celular pessoal sem a política da empresa permitir.</li>
+      <li>Não deixe a planilha aberta em tela compartilhada durante reuniões.</li>
+      <li>Senha perdida não tem recuperação: guarde em gerenciador de senhas corporativo.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="lgpd" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 19 =============================== -->
+<section class="modulo" id="celular" aria-labelledby="t-cel">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 19</span>
+      <h2 id="t-cel">Excel no celular: o recrutador em movimento</h2>
+      <div class="meta"><span class="chip nivel-1">Iniciante</span><span class="chip">15 min</span></div>
+    </div>
+  </header>
+  <div class="objetivo"><strong>Ao final você vai:</strong>
+    <ul><li>Consultar e atualizar candidatos entre entrevistas pelo app.</li></ul>
+  </div>
+
+  <h3>Instalação</h3>
+  <ol class="passos">
+    <li>Instale o <strong>Microsoft Excel</strong> (ou o app <strong>Microsoft 365</strong>) pela Play Store ou App Store.</li>
+    <li>Entre com a <strong>conta corporativa</strong>. Assim você vê os arquivos do OneDrive/SharePoint da empresa.</li>
+    <li>Abra o arquivo pela lista de <em>Recentes</em> ou <em>Compartilhados</em>. Nada de baixar cópia.</li>
+  </ol>
+
+  <h3>Gestos e comandos</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Quero...</th><th>No app</th></tr></thead>
+    <tbody>
+      <tr><td>Selecionar uma célula</td><td>Toque uma vez.</td></tr>
+      <tr><td>Editar o conteúdo</td><td>Toque duas vezes, ou toque e use a barra <strong>fx</strong> no topo.</td></tr>
+      <tr><td>Selecionar várias</td><td>Toque e arraste as bolinhas dos cantos da seleção.</td></tr>
+      <tr><td>Copiar, colar, inserir, apagar</td><td>Toque e segure a célula para abrir o menu rápido.</td></tr>
+      <tr><td>Abrir os comandos (guias)</td><td>Toque no ícone de edição (lápis ou “A” com lápis) ou nas reticências: a faixa de opções aparece embaixo, com Página Inicial, Inserir, Fórmulas, Dados, Revisão, Exibir.</td></tr>
+      <tr><td>Filtrar</td><td>Na Tabela, toque na seta do cabeçalho. Ou <span class="caminho">Página Inicial › Classificar e Filtrar</span>.</td></tr>
+      <tr><td>Congelar cabeçalho</td><td><span class="caminho">Exibir › Congelar Painéis</span>.</td></tr>
+      <tr><td>Trocar de aba</td><td>Abas na parte de baixo; deslize para ver mais.</td></tr>
+      <tr><td>Zoom</td><td>Movimento de pinça.</td></tr>
+      <tr><td>Comentar</td><td><span class="caminho">Revisão › Novo Comentário</span>, com @menção.</td></tr>
+      <tr><td>Data de hoje rápida</td><td>Digite a data (ex.: 21/11) ou use <code>=HOJE()</code> e cole como valor no computador depois.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Rotina sugerida no celular</h3>
+  <ul>
+    <li><strong>Depois de cada entrevista:</strong> atualizar Etapa e Status pela lista suspensa e anotar a nota.</li>
+    <li><strong>No começo do dia:</strong> abrir o Painel e ver “parados há 5+ dias”.</li>
+    <li><strong>Antes da reunião com o gestor:</strong> filtrar a vaga e mostrar o funil.</li>
+    <li><strong>Deixe a estrutura para o computador:</strong> criar tabelas, validações, tabela dinâmica e formatação condicional é muito mais rápido com mouse e teclado.</li>
+  </ul>
+
+  <div class="caixa-info celular-dica">
+    <span class="rotulo">Deixe a planilha amigável para o celular</span>
+    <ul>
+      <li>Colunas mais usadas (Nome, Vaga, Etapa, Status) no começo, à esquerda.</li>
+      <li>Congele Nome para ele não sumir ao rolar para o lado.</li>
+      <li>Crie uma aba “Resumo celular” com poucas colunas, gerada por FILTRO.</li>
+      <li>Use listas suspensas: escolher é muito mais fácil que digitar na tela pequena.</li>
+      <li>Ative bloqueio de tela e não salve cópias no aparelho.</li>
+    </ul>
+  </div>
+  <button class="concluir" data-modulo="celular" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 20 =============================== -->
+<section class="modulo" id="atalhos" aria-labelledby="t-atalhos">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 20</span>
+      <h2 id="t-atalhos">Atalhos de teclado</h2>
+      <div class="meta"><span class="chip">Consulta</span></div>
+    </div>
+  </header>
+  <p>Comece pelos marcados com ★: são os que mais economizam tempo na rotina de recrutamento.</p>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+    <tbody>
+      <tr><td>★ Criar Tabela</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd></td><td><kbd>⌃</kbd>+<kbd>T</kbd></td></tr>
+      <tr><td>★ Ligar/desligar filtro</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td><td><kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td></tr>
+      <tr><td>★ Preenchimento Relâmpago</td><td><kbd>Ctrl</kbd>+<kbd>E</kbd></td><td><kbd>⌃</kbd>+<kbd>E</kbd></td></tr>
+      <tr><td>★ Data de hoje (fixa)</td><td><kbd>Ctrl</kbd>+<kbd>;</kbd></td><td><kbd>⌃</kbd>+<kbd>;</kbd></td></tr>
+      <tr><td>★ Ir ao fim dos dados</td><td><kbd>Ctrl</kbd>+<kbd>↓</kbd></td><td><kbd>⌘</kbd>+<kbd>↓</kbd></td></tr>
+      <tr><td>★ Selecionar até o fim</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>↓</kbd></td><td><kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>↓</kbd></td></tr>
+      <tr><td>★ Formatar células</td><td><kbd>Ctrl</kbd>+<kbd>1</kbd></td><td><kbd>⌘</kbd>+<kbd>1</kbd></td></tr>
+      <tr><td>★ Localizar</td><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td><kbd>⌘</kbd>+<kbd>F</kbd></td></tr>
+      <tr><td>Substituir</td><td><kbd>Ctrl</kbd>+<kbd>U</kbd></td><td><kbd>⌃</kbd>+<kbd>H</kbd></td></tr>
+      <tr><td>Editar célula</td><td><kbd>F2</kbd></td><td><kbd>⌃</kbd>+<kbd>U</kbd></td></tr>
+      <tr><td>Referência absoluta ($)</td><td><kbd>F4</kbd></td><td><kbd>⌘</kbd>+<kbd>T</kbd></td></tr>
+      <tr><td>Quebra de linha na célula</td><td><kbd>Alt</kbd>+<kbd>Enter</kbd></td><td><kbd>⌥</kbd>+<kbd>Enter</kbd></td></tr>
+      <tr><td>Soma automática</td><td><kbd>Alt</kbd>+<kbd>=</kbd></td><td><kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd></td></tr>
+      <tr><td>Selecionar coluna / linha</td><td><kbd>Ctrl</kbd>+<kbd>Espaço</kbd> / <kbd>Shift</kbd>+<kbd>Espaço</kbd></td><td><kbd>⌃</kbd>+<kbd>Espaço</kbd> / <kbd>Shift</kbd>+<kbd>Espaço</kbd></td></tr>
+      <tr><td>Inserir / excluir linha ou coluna</td><td><kbd>Ctrl</kbd>+<kbd>+</kbd> / <kbd>Ctrl</kbd>+<kbd>-</kbd></td><td><kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>+</kbd> / <kbd>⌘</kbd>+<kbd>-</kbd></td></tr>
+      <tr><td>Preencher para baixo</td><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td><kbd>⌘</kbd>+<kbd>D</kbd></td></tr>
+      <tr><td>Colar só valores</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd> › <kbd>V</kbd> › <kbd>Enter</kbd></td><td><kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></td></tr>
+      <tr><td>Formato porcentagem</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>%</kbd></td><td><kbd>⌃</kbd>+<kbd>Shift</kbd>+<kbd>%</kbd></td></tr>
+      <tr><td>Trocar de aba</td><td><kbd>Ctrl</kbd>+<kbd>PgDn</kbd> / <kbd>PgUp</kbd></td><td><kbd>⌥</kbd>+<kbd>→</kbd> / <kbd>←</kbd></td></tr>
+      <tr><td>Atualizar tudo (dinâmicas, consultas)</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F5</kbd></td><td><kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>R</kbd></td></tr>
+      <tr><td>Mostrar fórmulas no lugar dos resultados</td><td><kbd>Ctrl</kbd>+<kbd>'</kbd></td><td><kbd>⌃</kbd>+<kbd>`</kbd></td></tr>
+      <tr><td>Desfazer / refazer</td><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td><kbd>⌘</kbd>+<kbd>Z</kbd> / <kbd>⌘</kbd>+<kbd>Y</kbd></td></tr>
+      <tr><td>Salvar</td><td><kbd>Ctrl</kbd>+<kbd>B</kbd> (em português, <kbd>Ctrl</kbd>+<kbd>S</kbd> é sublinhado)</td><td><kbd>⌘</kbd>+<kbd>S</kbd></td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa-info dica">
+    <span class="rotulo">Teclas de acesso (Windows)</span>
+    <p>Aperte e solte <kbd>Alt</kbd>: letras aparecem sobre cada guia e botão. Siga as letras para chegar a qualquer comando sem mouse. Ex.: <kbd>Alt</kbd>, <kbd>S</kbd>, <kbd>V</kbd> costuma abrir a Validação de Dados no Excel em português; confira as letras que aparecem na sua tela.</p>
+  </div>
+  <p class="chip" style="display:inline-block">Os atalhos do Mac variam entre versões; se algum não funcionar, procure o comando em <em>Ajuda</em> na barra de menus.</p>
+  <button class="concluir" data-modulo="atalhos" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 21 =============================== -->
+<section class="modulo" id="erros" aria-labelledby="t-erros">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 21</span>
+      <h2 id="t-erros">Erros comuns e como resolver</h2>
+      <div class="meta"><span class="chip">Consulta</span></div>
+    </div>
+  </header>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Erro</th><th>O que significa</th><th>Causa comum no recrutamento</th><th>Como resolver</th></tr></thead>
+    <tbody>
+      <tr><td><code>#N/D</code></td><td>Não encontrado</td><td>PROCX não achou o código da vaga ou o e-mail</td><td>ARRUMAR nos dois lados; conferir se existe; usar o argumento “se não achar”.</td></tr>
+      <tr><td><code>#VALOR!</code></td><td>Tipo errado</td><td>Subtrair uma data que está como texto</td><td>Converter a coluna em data (módulo 5).</td></tr>
+      <tr><td><code>#DIV/0!</code></td><td>Divisão por zero</td><td>Taxa de conversão de vaga sem candidatos</td><td><code>=SEERRO(A2/B2;0)</code> ou mostrar “—”.</td></tr>
+      <tr><td><code>#NOME?</code></td><td>Função desconhecida</td><td>Nome digitado errado, ou função nova (PROCX) em Excel antigo</td><td>Conferir grafia e idioma; usar ÍNDICE+CORRESP.</td></tr>
+      <tr><td><code>#REF!</code></td><td>Referência apagada</td><td>Alguém excluiu a coluna ou aba usada na fórmula</td><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> ou Histórico de Versões.</td></tr>
+      <tr><td><code>#DESPEJAR!</code></td><td>Sem espaço para o resultado</td><td>FILTRO/ÚNICO com algo embaixo</td><td>Limpar as células no caminho.</td></tr>
+      <tr><td><code>#####</code></td><td>Coluna estreita</td><td>Data ou valor maior que a coluna</td><td>Duplo clique na divisa da coluna.</td></tr>
+      <tr><td>Fórmula aparece como texto</td><td>Célula em formato Texto</td><td>Coluna formatada como texto antes</td><td>Formatar como Geral, <kbd>F2</kbd> e <kbd>Enter</kbd>.</td></tr>
+      <tr><td>Resultado não atualiza</td><td>Cálculo manual</td><td>Alguém mudou a opção</td><td><span class="caminho">Fórmulas › Opções de Cálculo › Automático</span>.</td></tr>
+      <tr><td>Aviso de referência circular</td><td>Fórmula usa a própria célula</td><td>Total incluindo a célula do total</td><td><span class="caminho">Fórmulas › Verificação de Erros › Referências Circulares</span>.</td></tr>
+      <tr><td>CONT.SES conta a menos</td><td>Texto diferente</td><td>“LinkedIn ” com espaço, ou grafias diferentes</td><td>Listas suspensas e ARRUMAR.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="caixa-info dica">
+    <span class="rotulo">Investigar uma fórmula</span>
+    <p>Selecione a célula e use <span class="caminho">Fórmulas › Avaliar Fórmula</span>: o Excel mostra o cálculo passo a passo. Na barra de fórmulas, selecione um pedaço e aperte <kbd>F9</kbd> para ver o resultado daquele trecho (depois <kbd>Esc</kbd> para não gravar).</p>
+  </div>
+  <button class="concluir" data-modulo="erros" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 22 =============================== -->
+<section class="modulo" id="exercicios" aria-labelledby="t-exe">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 22</span>
+      <h2 id="t-exe">Exercícios práticos com gabarito</h2>
+      <div class="meta"><span class="chip">Use a planilha de prática</span></div>
+    </div>
+  </header>
+  <p>Abra a <a href="arquivos/planilha-pratica-recrutamento.xlsx" download>planilha de prática</a>. Tente sozinho antes de abrir a resposta.</p>
+
+  <details><summary>1. Quantos candidatos da Ana Lima estão em andamento?</summary><div>
+    <p>Filtre Recrutador = Ana Lima e Status = Em andamento e veja a contagem na barra de status (canto inferior direito). Ou:</p>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=CONT.SES(tbl_Candidatos[Recrutador];"Ana Lima";tbl_Candidatos[Status];"Em andamento")</code></pre></div>
+  </div></details>
+
+  <details><summary>2. Quem precisa de retorno hoje?</summary><div>
+    <p>Classifique <strong>Dias parado</strong> do maior para o menor. As linhas amarelas (formatação condicional) são as de 5+ dias úteis sem movimentação.</p>
+  </div></details>
+
+  <details><summary>3. Qual fonte trouxe mais candidatos que chegaram à Entrevista RH?</summary><div>
+    <p>Veja o bloco “Desempenho por fonte” na aba Painel, coluna “Chegaram à entrevista RH”. Com referências estruturadas, a fórmula da linha 30 (LinkedIn) fica:</p>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=CONT.SES(tbl_Candidatos[Fonte];A30;tbl_Candidatos[Nº Etapa];"&gt;=3")</code></pre></div>
+    <p>Compare também a porcentagem: volume alto com % baixo indica fonte que traz muita gente fora do perfil.</p>
+  </div></details>
+
+  <details><summary>4. Monte uma tabela dinâmica de candidatos por cargo e etapa</summary><div>
+    <p>Clique na tabela › <span class="caminho">Inserir › Tabela Dinâmica</span> › Linhas: Cargo › Colunas: Etapa › Valores: ID (Contagem).</p>
+  </div></details>
+
+  <details><summary>5. Traga o e-mail do CAND-010 com PROCX</summary><div>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=PROCX("CAND-010";tbl_Candidatos[ID];tbl_Candidatos[E-mail];"Não encontrado")</code></pre></div>
+  </div></details>
+
+  <details><summary>6. Liste os candidatos com nota ≥ 4,5 (Excel 365)</summary><div>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=FILTRO(tbl_Candidatos[[Nome]:[E-mail]];tbl_Candidatos[Nota Entrevista]&gt;=4,5;"Ninguém")</code></pre></div>
+  </div></details>
+
+  <details><summary>7. Qual o time to hire médio?</summary><div>
+    <p>Está no Painel. A fórmula na planilha de prática usa intervalos; com referências estruturadas fica:</p>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=MÉDIASES(tbl_Candidatos[Dias no processo];tbl_Candidatos[Status];"Contratado")</code></pre></div>
+  </div></details>
+
+  <details><summary>8. Limpe a aba Dados_Brutos</summary><div>
+    <p>O gabarito está na própria aba, abaixo da tabela. Pontos de atenção: a linha da Maria Eduarda aparece duas vezes (mesmo e-mail depois de limpo), o e-mail “joao.alves@email” não tem ponto depois do @ e o do Rafael tem espaço.</p>
+  </div></details>
+
+  <details><summary>9. Proteja a aba Painel</summary><div>
+    <p><span class="caminho">Revisão › Proteger Planilha</span>, deixe marcado só “Selecionar células bloqueadas/desbloqueadas”, defina senha (opcional) e OK. Tente digitar em uma célula para confirmar o bloqueio.</p>
+  </div></details>
+
+  <details><summary>10. Desafio: “Próxima ação” automática para cada candidato</summary><div>
+    <div class="formula"><div class="cab"><span>Resposta</span></div><pre><code>=SES([@Status]&lt;&gt;"Em andamento";"—";[@[Dias parado]]&gt;=5;"Dar retorno HOJE";[@Etapa]="Proposta";"Cobrar resposta da proposta";[@Etapa]="Entrevista gestor";"Pedir feedback ao gestor";VERDADEIRO;"Seguir o fluxo")</code></pre></div>
+  </div></details>
+  <button class="concluir" data-modulo="exercicios" aria-pressed="false"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+<!-- =============================== 23 =============================== -->
+<section class="modulo" id="checklist" aria-labelledby="t-check">
+  <header>
+    <div class="titulos">
+      <span class="etiqueta">Módulo 23</span>
+      <h2 id="t-check">Checklist final e glossário</h2>
+      <div class="meta"><span class="chip">Consulta</span></div>
+    </div>
+  </header>
+
+  <h3>Sua planilha de recrutamento está pronta quando...</h3>
+  <ul class="checklist">
+    <li><input type="checkbox" id="k1"><label for="k1">Está no OneDrive/SharePoint, com Salvamento Automático ligado.</label></li>
+    <li><input type="checkbox" id="k2"><label for="k2">Uma linha por candidato por processo, cabeçalho único, sem mesclas e sem linhas vazias.</label></li>
+    <li><input type="checkbox" id="k3"><label for="k3">Candidatos e Vagas são Tabelas com nome (tbl_Candidatos, tbl_Vagas).</label></li>
+    <li><input type="checkbox" id="k4"><label for="k4">Etapa, Status, Fonte e Recrutador têm lista suspensa vinda da aba Listas.</label></li>
+    <li><input type="checkbox" id="k5"><label for="k5">Datas são datas de verdade; feriados cadastrados.</label></li>
+    <li><input type="checkbox" id="k6"><label for="k6">Cargo e gestor vêm da aba Vagas por PROCX.</label></li>
+    <li><input type="checkbox" id="k7"><label for="k7">Formatação condicional destaca candidatos parados e SLA estourado.</label></li>
+    <li><input type="checkbox" id="k8"><label for="k8">Painel com indicadores definidos na aba Leia-me.</label></li>
+    <li><input type="checkbox" id="k9"><label for="k9">Painel e fórmulas protegidos; compartilhamento com pessoas específicas.</label></li>
+    <li><input type="checkbox" id="k10"><label for="k10">Sem dados sensíveis desnecessários; prazo de retenção definido e revisado.</label></li>
+  </ul>
+
+  <h3>Glossário</h3>
+  <div class="tabela-rolagem"><table>
+    <thead><tr><th>Termo</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td>ATS</td><td>Applicant Tracking System: sistema de gestão de candidatos. Muitas vezes a planilha recebe exportações dele.</td></tr>
+      <tr><td>Banco de talentos</td><td>Candidatos guardados para vagas futuras, com consentimento.</td></tr>
+      <tr><td>Coluna calculada</td><td>Coluna de Tabela cuja fórmula se repete em todas as linhas.</td></tr>
+      <tr><td>Critério</td><td>Condição usada em CONT.SES, SOMASES etc. Ex.: "&gt;=4".</td></tr>
+      <tr><td>Funil</td><td>Quantidade de candidatos em cada etapa, do inscrito ao contratado.</td></tr>
+      <tr><td>Hunting</td><td>Busca ativa de profissionais, em vez de esperar inscrições.</td></tr>
+      <tr><td>Matriz dinâmica</td><td>Fórmula que devolve vários resultados que se espalham pelas células (FILTRO, ÚNICO).</td></tr>
+      <tr><td>Referência estruturada</td><td>Chamar colunas de Tabela pelo nome: tbl_Candidatos[Status].</td></tr>
+      <tr><td>Segmentação de dados</td><td>Botões visuais de filtro.</td></tr>
+      <tr><td>SLA</td><td>Prazo combinado com a área para fechar a vaga.</td></tr>
+      <tr><td>Shortlist</td><td>Lista curta de finalistas apresentada ao gestor.</td></tr>
+      <tr><td>Time to fill</td><td>Tempo da abertura ao fechamento da vaga.</td></tr>
+      <tr><td>Time to hire</td><td>Tempo do candidato entrar no processo até aceitar a proposta.</td></tr>
+      <tr><td>Validação de dados</td><td>Regra que limita o que pode ser digitado na célula.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Para continuar aprendendo</h3>
+  <ul>
+    <li><a href="https://support.microsoft.com/pt-br/excel" target="_blank" rel="noopener">Central de ajuda do Excel (Microsoft, em português)</a></li>
+    <li><a href="https://support.microsoft.com/pt-br/office/fun%C3%A7%C3%B5es-do-excel-por-categoria-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb" target="_blank" rel="noopener">Funções do Excel por categoria</a></li>
+    <li>Próximos passos: Power Query (importar e limpar automaticamente) e Power BI (painéis compartilhados).</li>
+  </ul>
+
+  <div class="botoes" style="margin-top:20px">
+    <a class="botao primario" href="arquivos/planilha-pratica-recrutamento.xlsx" download>Baixar planilha de prática</a>
+    <button class="botao" id="zerar-progresso" type="button" style="background:var(--superficie-2);color:var(--texto);border-color:var(--borda)">Zerar meu progresso</button>
+  </div>
+  <button class="concluir" data-modulo="checklist" aria-pressed="false" style="margin-top:14px"><span class="caixa"></span><span class="texto">Marcar como concluído</span></button>
+</section>
+
+    <footer class="rodape">
+      <p>Tutorial de Excel para Recrutamento e Seleção · <span id="ano">2026</span>. Todos os nomes e dados da planilha de prática são fictícios. Os caminhos de menu seguem o Excel para Microsoft 365 em português; versões mais antigas podem ter nomes ligeiramente diferentes.</p>
+    </footer>
+  </main>
+</div>
+
+<button class="voltar-topo" type="button" aria-label="Voltar ao topo">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+</button>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
