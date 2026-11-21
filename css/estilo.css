@@ -335,15 +335,15 @@ td code { white-space: nowrap; }
 .planilha .verde { background: var(--ok-fundo) !important; }
 
 /* grade de cartoes */
-.grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0 22px; }
+.grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 14px; margin: 16px 0 22px; }
 .cartao { padding: 16px; border-radius: var(--raio); background: var(--superficie-2); border: 1px solid var(--borda); }
 .cartao h4 { margin: 0 0 6px; color: var(--primaria); }
 .cartao p { margin: 0; font-size: .93rem; }
 .cartao .grande { font-size: 1.6rem; font-weight: 800; color: var(--primaria); line-height: 1.2; }
 
 /* comparativo certo x errado */
-.compara { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0 22px; }
-.compara > div { padding: 14px 16px; border-radius: var(--raio); border: 1px solid var(--borda); }
+.compara { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 16px 0 22px; }
+.compara > div { min-width: 0; padding: 14px 16px; border-radius: var(--raio); border: 1px solid var(--borda); }
 .compara .nao { background: var(--perigo-fundo); border-color: color-mix(in srgb, var(--perigo) 35%, transparent); }
 .compara .sim { background: var(--ok-fundo); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
 .compara h4 { margin: 0 0 8px; }
@@ -367,9 +367,9 @@ details > div { padding: 0 16px 14px; }
 /* quiz */
 .quiz { margin: 18px 0; padding: 16px; border-radius: var(--raio); border: 1px dashed var(--primaria-borda); background: var(--primaria-suave); }
 .quiz .pergunta { font-weight: 700; margin-bottom: 10px; }
-.quiz .opcoes { display: grid; gap: 8px; }
+.quiz .opcoes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
 .quiz button.opcao {
-  text-align: left; min-height: 46px; padding: 10px 14px;
+  text-align: left; min-height: 46px; padding: 10px 14px; min-width: 0; overflow-wrap: anywhere;
   font: inherit; font-size: .95rem;
   border-radius: 10px; border: 1px solid var(--borda);
   background: var(--superficie); color: var(--texto); cursor: pointer;
@@ -380,7 +380,7 @@ details > div { padding: 0 16px 14px; }
 .quiz .retorno { margin-top: 10px; font-size: .93rem; }
 
 /* calculadora */
-.calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
+.calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; margin: 14px 0; }
 .calc label { display: grid; gap: 4px; font-size: .85rem; font-weight: 600; color: var(--texto-suave); }
 .calc input {
   width: 100%; min-height: 44px; padding: 8px 10px;
@@ -436,7 +436,7 @@ details > div { padding: 0 16px 14px; }
   .conteudo { padding: 20px 16px 80px; }
   .progresso-topo .barra { width: 60px; }
   .modulo { margin-top: 24px; border-radius: 14px; }
-  .compara { grid-template-columns: 1fr; }
+  .compara { grid-template-columns: minmax(0, 1fr); }
   .funil .linha { grid-template-columns: 96px 1fr 58px; font-size: .8rem; }
 }
 @media (max-width: 480px) {
