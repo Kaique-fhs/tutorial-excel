@@ -64,23 +64,112 @@
   document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") abrirMenu(false); });
   $$("#menu a").forEach(function (a) { a.addEventListener("click", function () { abrirMenu(false); }); });
 
-  /* ---------- secao ativa no menu ---------- */
+  /* ---------- um modulo por tela ---------- */
   var links = $$("#menu a[href^='#']");
   var mapa = {};
   links.forEach(function (a) { mapa[a.getAttribute("href").slice(1)] = a; });
   var modulos = $$(".modulo, .capa");
-  if ("IntersectionObserver" in window) {
-    var obs = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (en) {
-        if (en.isIntersecting && mapa[en.target.id]) {
-          links.forEach(function (l) { l.classList.remove("ativo"); l.removeAttribute("aria-current"); });
-          mapa[en.target.id].classList.add("ativo");
-          mapa[en.target.id].setAttribute("aria-current", "true");
-        }
-      });
-    }, { rootMargin: "-20% 0px -70% 0px" });
-    modulos.forEach(function (m) { obs.observe(m); });
+  var listaModulos = $$(".modulo");
+  raiz.classList.add("paginado");
+
+  function nomeDe(m) {
+    var a = mapa[m.id];
+    return a ? a.lastChild.textContent.trim() : $("h2", m).textContent;
   }
+  function numeroDe(m) {
+    var a = mapa[m.id];
+    return a ? $(".num", a).textContent.trim() : "";
+  }
+  function escapar(t) {
+    return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+  }
+
+  // grade de cartoes na pagina inicial
+  var vitrine = $("#vitrine .vitrine-conteudo");
+  if (vitrine) {
+    var html = "";
+    $$("#menu .grupo").forEach(function (g) {
+      var ol = g.nextElementSibling;
+      html += '<h3 class="vitrine-grupo">' + escapar(g.textContent) + '</h3><div class="vitrine-grade">';
+      $$("a", ol).forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        var m = document.getElementById(id);
+        if (!m) return;
+        var resumo = $(".objetivo li", m) || $(":scope > p", m);
+        var chips = $$(".meta .chip", m).slice(0, 2).map(function (c) {
+          return '<span class="' + c.className + '">' + escapar(c.textContent) + "</span>";
+        }).join("");
+        html += '<a class="cartao-modulo" href="#' + id + '" data-id="' + id + '">' +
+          '<span class="cm-num">' + escapar(numeroDe(m)) + "</span>" +
+          '<span class="cm-corpo"><span class="cm-nome">' + escapar(nomeDe(m)) + "</span>" +
+          (resumo ? '<span class="cm-resumo">' + escapar(resumo.textContent) + "</span>" : "") +
+          (chips ? '<span class="cm-chips">' + chips + "</span>" : "") +
+          '</span><span class="cm-feito" aria-label="Concluído">✓</span></a>';
+      });
+      html += "</div>";
+    });
+    vitrine.innerHTML = html;
+  }
+
+  // em cada modulo: voltar, sumario e anterior/proximo
+  listaModulos.forEach(function (m, i) {
+    var cab = $("header", m);
+    if (cab) {
+      var voltar = document.createElement("a");
+      voltar.className = "voltar-modulos";
+      voltar.href = "#inicio";
+      voltar.innerHTML = '<span aria-hidden="true">←</span> Todos os módulos';
+      cab.insertAdjacentElement("beforebegin", voltar);
+    }
+    var h3s = $$("h3", m);
+    if (h3s.length >= 2) {
+      var sum = document.createElement("nav");
+      sum.className = "sumario";
+      sum.setAttribute("aria-label", "Neste módulo");
+      sum.innerHTML = '<span class="sumario-rotulo">Neste módulo</span>';
+      h3s.forEach(function (h) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = h.textContent;
+        b.addEventListener("click", function () { h.scrollIntoView({ behavior: "smooth", block: "start" }); });
+        sum.appendChild(b);
+      });
+      (($(".objetivo", m)) || cab).insertAdjacentElement("afterend", sum);
+    }
+    var ant = listaModulos[i - 1];
+    var prox = listaModulos[i + 1];
+    var nav = document.createElement("nav");
+    nav.className = "nav-modulo";
+    nav.setAttribute("aria-label", "Navegação entre módulos");
+    nav.innerHTML =
+      (ant ? '<a class="nav-ant" href="#' + ant.id + '"><small>← Anterior</small><span>' + escapar(nomeDe(ant)) + "</span></a>"
+           : '<a class="nav-ant" href="#inicio"><small>← Voltar</small><span>Página inicial</span></a>') +
+      (prox ? '<a class="nav-prox" href="#' + prox.id + '"><small>Próximo →</small><span>' + escapar(nomeDe(prox)) + "</span></a>"
+            : '<a class="nav-prox" href="#inicio"><small>Fim do tutorial</small><span>Voltar ao início</span></a>');
+    m.appendChild(nav);
+  });
+
+  function rota() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var alvo = id ? document.getElementById(id) : null;
+    var mod = alvo ? (alvo.classList.contains("modulo") ? alvo : alvo.closest(".modulo")) : null;
+    listaModulos.forEach(function (m) { m.classList.toggle("atual", m === mod); });
+    document.body.classList.toggle("vendo-modulo", !!mod);
+    links.forEach(function (l) {
+      var on = !!mod && l.getAttribute("href") === "#" + mod.id;
+      l.classList.toggle("ativo", on);
+      if (on) l.setAttribute("aria-current", "page"); else l.removeAttribute("aria-current");
+    });
+    if (mod && alvo !== mod) alvo.scrollIntoView();
+    else window.scrollTo({ top: 0, behavior: "instant" });
+    document.title = mod ? nomeDe(mod) + " · Excel para Recrutamento" : "Excel para Recrutamento";
+    if (mod) {
+      var h2 = $("h2", mod);
+      h2.setAttribute("tabindex", "-1");
+      h2.focus({ preventScroll: true });
+    }
+  }
+  window.addEventListener("hashchange", rota);
 
   /* ---------- busca ---------- */
   var busca = $("#busca");
@@ -118,7 +207,24 @@
       b.setAttribute("aria-pressed", ok ? "true" : "false");
       b.querySelector(".texto").textContent = ok ? "Módulo concluído" : "Marcar como concluído";
       if (mapa[id]) mapa[id].classList.toggle("feito", ok);
+      var cartao = $('.cartao-modulo[data-id="' + id + '"]');
+      if (cartao) cartao.classList.toggle("feito", ok);
     });
+    var continuar = $("#continuar");
+    if (continuar) {
+      var pendente = botoesConcluir.filter(function (b) { return !estado.feitos[b.getAttribute("data-modulo")]; })[0];
+      if (!feitos) {
+        continuar.textContent = "Começar pelo módulo 0";
+        continuar.href = "#como-usar";
+      } else if (pendente) {
+        var mp = document.getElementById(pendente.getAttribute("data-modulo"));
+        continuar.textContent = "Continuar: " + nomeDe(mp);
+        continuar.href = "#" + mp.id;
+      } else {
+        continuar.textContent = "Tudo concluído! Revisar o checklist";
+        continuar.href = "#checklist";
+      }
+    }
     var pct = total ? Math.round((feitos / total) * 100) : 0;
     var barra = $(".progresso-topo .barra span");
     var rotulo = $(".progresso-topo .valor");
@@ -252,4 +358,6 @@
   /* ---------- ano no rodape ---------- */
   var ano = $("#ano");
   if (ano) ano.textContent = new Date().getFullYear();
+
+  rota();
 })();
